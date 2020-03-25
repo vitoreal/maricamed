@@ -12,7 +12,7 @@ import br.com.maricamed.entities.Usuario;
 import br.com.maricamed.validator.UsuarioValidator;
 
 /**
-* <h1>Upnid - controle de usuario!</h1>
+* <h1>Marica Med - controle de usuario!</h1>
 * Usuario Controller - 
 * Tratamento do login / logout / cadastro do usuário
 * <p>

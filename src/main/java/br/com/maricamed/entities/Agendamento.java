@@ -1,10 +1,12 @@
 package br.com.maricamed.entities;
 
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
+import java.time.Instant;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
@@ -27,9 +29,8 @@ public class Agendamento extends AbstractEntity {
 	@JoinColumn(name="id_horario")
 	private Horario horario; 
 
-	@Column(name="data_consulta")
-	@DateTimeFormat(iso = ISO.DATE)
-	private LocalDate dataConsulta;
+	@Column(name="data_consulta", length = 10)
+	private Instant dataConsulta;
 	
 	public Especialidade getEspecialidade() {
 		return especialidade;
@@ -55,11 +56,11 @@ public class Agendamento extends AbstractEntity {
 		this.paciente = paciente;
 	}
 
-	public LocalDate getDataConsulta() {
+	public Instant getDataConsulta() {
 		return dataConsulta;
 	}
 
-	public void setDataConsulta(LocalDate dataConsulta) {
+	public void setDataConsulta(Instant dataConsulta) {
 		this.dataConsulta = dataConsulta;
 	}
 

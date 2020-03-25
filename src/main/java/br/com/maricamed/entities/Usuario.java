@@ -1,13 +1,16 @@
 package br.com.maricamed.entities;
 
-import java.time.LocalDate;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
-
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.format.annotation.DateTimeFormat.ISO;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,16 +19,14 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "usuarios", indexes = {@Index(name = "idx_usuario_email", columnList = "email")})
 public class Usuario extends AbstractEntity {	
 	
-	@Column(name = "nome", unique = true, nullable = false)
+	@Column(name = "nome", unique = true, nullable = false, length = 200)
 	private String nome;
 
-	@Column(name = "data_nascimento")
-	@DateTimeFormat(iso = ISO.DATE)
-	private LocalDate dtNascimento;
+	@Column(name = "data_nascimento", length = 10)
+	private Instant dtNascimento;
 	
-	@Column(name = "data_cadastro", nullable = false)
-	@DateTimeFormat(iso = ISO.DATE)
-	private LocalDate dtCadastro;
+	@Column(name = "data_cadastro", nullable = false, length = 10)
+	private Instant dtCadastro;
 	
 	@Column(name = "email", unique = true, nullable = false)
 	private String email;
@@ -76,19 +77,19 @@ public class Usuario extends AbstractEntity {
 		this.nome = nome;
 	}
 
-	public LocalDate getDtNascimento() {
+	public Instant getDtNascimento() {
 		return dtNascimento;
 	}
 
-	public void setDtNascimento(LocalDate dtNascimento) {
+	public void setDtNascimento(Instant dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
 	
-	public LocalDate getDtCadastro() {
+	public Instant getDtCadastro() {
 		return dtCadastro;
 	}
 
-	public void setDtCadastro(LocalDate dtCadastro) {
+	public void setDtCadastro(Instant dtCadastro) {
 		this.dtCadastro = dtCadastro;
 	}
 

@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "horas", indexes = {@Index(name = "idx_hora_minuto", columnList = "hora_minuto")})
+@Table(name = "horario", indexes = {@Index(name = "idx_hora_minuto", columnList = "hora_minuto")})
 public class Horario extends AbstractEntity {
 	
 	@Column(name = "hora_minuto", unique = true, nullable = false)

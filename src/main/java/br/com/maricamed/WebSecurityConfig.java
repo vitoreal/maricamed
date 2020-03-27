@@ -20,15 +20,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
+	        
             .authorizeRequests()
-                .antMatchers("/webjars/**", "/css/**", "/image/**", "/js/**").permitAll()
+                .antMatchers("/webjars/**", "/assets/**", "/css/**", "/image/**", "/js/**").permitAll()
                 .antMatchers("/home/",  "/").permitAll()
                 
                 // Acessos privado admin
                 .antMatchers("/usuarios/**").hasAuthority("ADMIN")
                 
                 // Acessos privado medico
-                .antMatchers("/medicos/**").hasAuthority("MEDICOS")
+                .antMatchers("/medicos/**").hasAuthority("MEDICO")
+                
+                // Acessos privado clinica
+                .antMatchers("/clinicas/**").hasAuthority("CLINICA")
+                
+                // Acessos privado paciente
+                .antMatchers("/pacientes/**").hasAuthority("PACIENTE")
                 
                 .anyRequest().authenticated()
                 .and()

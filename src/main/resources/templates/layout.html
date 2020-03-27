@@ -3,27 +3,41 @@
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	th:with="version=${#strings.randomAlphanumeric(3)}">
+<!-- Mirrored from html.ambidextrousbd.com/novamedi/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Mar 2020 13:54:15 GMT -->
 <head>
-<title>UPNID Security</title>
-<meta charset="UTF-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-<meta name="description" content="clínica médica com agendamento de consultas online" />
-<meta name="author" content="ballem" />
+	<!-- meta -->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport"       content="width=device-width, initial-scale=1.0">
+	<meta name="description"    content="Novamedi - One Page Multipurpose Html Template">
+	<meta name="keywords"       content="business, responsive, multipurpose, onepage, corporate, clean">
+	<meta name="author"         content="Ambidextrousbd">
+	
+	<!-- Site title -->
+	<title>Novamedi - One Page Multipurpose Html Template</title>
+	
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
+	
+	<!-- Bootstrap core CSS -->
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css(v=${version}) }" rel="stylesheet" />
+	<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+	<link href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" rel="stylesheet"/>
 
-<!-- Bootstrap core CSS -->
-<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css(v=${version}) }" rel="stylesheet" />
-<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-<link href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" rel="stylesheet"/>
-<!-- jQueryUI (autocomplete) -->
-<link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet"/>
-<!-- Icons fontawesome -->
-<link href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" crossorigin="anonymous" rel="stylesheet" />
-<!-- Custom styles for this template -->
-<link th:href="@{/css/style-home.css(v=${version}) }" rel="stylesheet" />
-
+	<link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/flaticon.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/magnific-popup.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/slicknav.min.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/nice-select.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/typography.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/default-css.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/styles.css}">
+    <link rel="stylesheet" th:href="@{/assets/css/responsive.css}">
+    <!-- modernizr css -->
+    <script th:src="@{/assets/js/vendor/modernizr-2.8.3.min.js}"></script>	
 </head>
+
 <body>
 	<header th:replace="fragments/header :: cabecalho">
 		<div>header</div>
@@ -54,6 +68,22 @@
 	<script	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 	<script	src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 	<script	src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+	
+    <!-- others plugins -->
+    <script th:src="@{/assets/js/owl.carousel.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.slicknav.min.js}"></script>
+    <script th:src="@{/assets/js/counterup.min.js}"></script>
+    <script th:src="@{/assets/js/waypoints.js}"></script>
+    <script th:src="@{/assets/js/imagesloaded.pkgd.min.js}"></script>
+    <script th:src="@{/assets/js/isotope.pkgd.min.js}"></script>
+    <script th:src="@{/assets/js/jquery.magnific-popup.min.js}"></script>
+    <script th:src="@{/assets/js/nice-select-plugin.js}"></script>
+    <script th:src="@{/assets/js/medituch-cube.js}"></script>
+    <script th:src="@{/assets/js/plugins.js}"></script>
+    <script th:src="@{/assets/js/jQuery.scrollSpeed.js}"></script>
+    <script th:src="@{/assets/js/jQuery.scrollSpeed.js}"></script>
+    <script th:src="@{/assets/js/scripts.js}"></script>
+		
 	<!-- 	MEUS JS -->
 	<script th:replace=":: js"></script>	
 	<script th:replace=":: inlinescript" th:inline="javascript"></script>

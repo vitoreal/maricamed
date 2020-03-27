@@ -1,0 +1,552 @@
+/* (1366x768) WXGA Display */
+
+@media screen and (min-width: 1366px) and (max-width: 1919px) {
+    .hmrs-contact {
+        margin-left: 21px;
+    }
+}
+
+
+/* (1366x768) WXGA Display */
+
+@media screen and (min-width: 1197px) and (max-width: 1366px) {
+    .slider-area .owl-dots {
+        left: 47px;
+    }
+    .hmrs-contact {
+        margin-left: 21px;
+    }
+}
+
+
+/* Normal desktop :992px. */
+
+@media (min-width: 992px) and (max-width: 1197px) {
+    .apf-style-two {
+        padding: 28px 43px 24px 14px;
+    }
+    .appoiunment-two {
+        margin-top: -75px;
+    }
+    .contact-left-cnt {
+        padding: 64px 32px;
+    }
+    .blg-details-content h2 a {
+        font-size: 26px;
+    }
+    .blog-details .blg-thumb {
+        margin-bottom: 29px;
+    }
+}
+
+
+/* Normal desktop :991px. */
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .htp-search form button {
+        right: 1px;
+        top: 1px;
+    }
+    .htp-search {
+        margin: 14px 0px;
+    }
+    .htp-search form {
+        display: block;
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding: 1px;
+        border-radius: 0;
+    }
+    .header-bottom {
+        padding: 21px 0px;
+    }
+    .slider-content h2 {
+        font-size: 40px;
+    }
+    .appoinment-form form .btn-style-one {
+        margin-top: 20px;
+    }
+    .abt-left-thumb {
+        height: 350px;
+    }
+    .cta-content h2 {
+        font-size: 26px;
+    }
+    .feature-blog-area {
+        padding: 100px 0px 70px;
+    }
+    .ft-blog {
+        margin-bottom: 30px;
+    }
+
+    /*--------------------------
+        Home Two
+    ----------------------------*/
+    .hb-style-two .htp-appoinment {
+        text-align: left;
+    }
+    .hb-style-two {
+        padding: 20px 0px;
+    }
+    .appoiunment-two {
+        padding-bottom: 0;
+    }
+    .ft-blog2,
+    .ft-blog2-right {
+        margin-bottom: 30px;
+    }
+    .apf-style-two form .btn-style-one {
+        margin-top: 0;
+    }
+    .important_inner {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+    .fmargin_top {
+        padding-top: 80px;
+    }
+
+    /*--------------------------
+        About Us
+    ----------------------------*/
+    .happy-client-area {
+        padding: 90px 0px 60px;
+    }
+    .counter-item {
+        margin-bottom: 30px;
+    }
+    .service-details-area {
+        padding: 90px 0px 60px;
+    }
+    .contact-area {
+        padding: 90px 0px;
+    }
+    .contact-left-cnt {
+        height: auto;
+        margin-bottom: 40px;
+    }
+    #google_map {
+        height: 350px;
+    }
+    .blog-area,
+    .blog-details {
+        padding: 90px 0px;
+    }
+    .blg-details-content h2 a {
+        font-size: 23px;
+    }
+    .blog-details .blg-thumb {
+        margin-bottom: 23px;
+    }
+    .blg-details-content img {
+        display: block;
+        float: none;
+    }
+    .team-details {
+        padding: 90px 0px 70px;
+    }
+    .tmdl-contact-box h2 {
+        font-size: 19px;
+    }
+    .tmdr-content h2 {
+        font-size: 21px;
+    }
+
+
+
+
+
+
+
+
+
+
+    footer .fwidget {
+        margin-bottom: 33px;
+    }
+}
+
+
+/* small mobile :320px. */
+
+@media (max-width: 767px) {
+    .htp-search form {
+        display: block;
+        position: relative;
+        top: 0;
+        width: 100%;
+        padding: 1px;
+        border-radius: 0;
+    }
+}
+
+
+/* Large Mobile :480px. */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    /*--------------------------
+        Home One
+    ----------------------------*/
+    .htp-address {
+        text-align: center;
+    }
+    .htp-address li {
+        margin-right: 0;
+    }
+    .htp-appoinment {
+        text-align: center;
+        margin-top: 13px;
+    }
+    .htp-search form button {
+        right: 1px;
+        top: 1px;
+    }
+    .htp-search {
+        margin-top: 14px;
+    }
+    .header-bottom {
+        padding: 21px 0px;
+    }
+    .slider-area .owl-dots {
+        display: none;
+    }
+    .slider-content h4 {
+        font-size: 21px;
+    }
+    .slider-content h2 {
+        font-size: 28px;
+        line-height: 42px;
+        padding: 7px 11px;
+    }
+    .appoinment-form {
+        padding: 38px 20px;
+    }
+    .appoinment-form form .btn-style-one {
+        margin-top: 18px;
+    }
+    .appoinment-area {
+        padding-bottom: 70px;
+    }
+    .service-area {
+        padding: 70px 0px 40px;
+    }
+    .abt-left-thumb {
+        height: 300px;
+    }
+    .about-area {
+        padding: 70px 0px 20px;
+    }
+    .abt-ft-item {
+        flex-basis: 100%;
+        margin-bottom: 44px;
+    }
+    .gallery-area,
+    .our-doctors,
+    .feature-blog-area,
+    .feature-blog-area {
+        padding: 70px 0px 50px;
+    }
+    .cta-btn {
+        text-align: left;
+        margin-top: 36px;
+    }
+
+    .testimonial-area {
+        padding: 70px 0px;
+    }
+    .ft-blog {
+        margin-bottom: 30px;
+    }
+    footer .fwidget {
+        margin-bottom: 40px;
+    }
+    .footer-top {
+        padding-bottom: 40px;
+    }
+    .footer-bottom,
+    .footer-bottom ul {
+        text-align: center;
+    }
+
+    /*--------------------------
+        Home Two
+    ----------------------------*/
+    .hb-style-two .htp-appoinment {
+        text-align: left;
+    }
+    .hb-style-two {
+        padding-bottom: 20px;
+    }
+    .appoiunment-two {
+        padding-bottom: 0;
+    }
+    .ft-blog2,
+    .ft-blog2-right {
+        margin-bottom: 30px;
+    }
+    .important_inner {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+    .fmargin_top {
+        padding-top: 70px;
+    }
+
+    /*--------------------------
+        About Us
+    ----------------------------*/
+    .crumbs_inner h2 {
+        font-size: 31px;
+        margin-bottom: 2px;
+        line-height: 45px;
+    }
+    .happy-client-area {
+        padding: 80px 0px 80px;
+    }
+    .counter-item {
+        margin-bottom: 30px;
+    }
+    .service-details-area {
+        padding: 80px 0px 60px;
+    }
+    .list-of-service {
+        margin-bottom: 40px;
+    }
+    .contact-area {
+        padding: 80px 0px;
+    }
+    .contact-left-cnt {
+        height: auto;
+        margin-bottom: 40px;
+    }
+    #google_map {
+        height: 320px;
+    }
+    .blog-area,
+    .blog-details {
+        padding: 80px 0px;
+    }
+    .widget_sidebar {
+        margin-top: 60px;
+    }
+    .team-details {
+        padding: 80px 0px 60px;
+    }
+    .tmdl-contact-box h2 {
+        font-size: 19px;
+    }
+    .team-details-left {
+        margin-bottom: 30px;
+    }
+    .tmdr-content h2 {
+        font-size: 21px;
+    }
+}
+
+
+
+/* small mobile :320px. */
+
+@media (min-width: 240px) and (max-width: 479px) {
+    /*--------------------------
+        Home One
+    ----------------------------*/
+    .htp-address {
+        text-align: center;
+    }
+    .htp-address li {
+        margin-right: 0;
+    }
+    .htp-appoinment {
+        text-align: center;
+        margin-top: 13px;
+    }
+    .htp-search form button {
+        right: 1px;
+        top: 1px;
+    }
+    .htp-search {
+        margin: 14px 0px;
+    }
+    .header-bottom {
+        padding: 21px 0px;
+        margin-top: 15px;
+    }
+    .slider-area .owl-dots {
+        display: none;
+    }
+    .slider-content h4 {
+        font-size: 21px;
+    }
+    .slider-content h2 {
+        font-size: 18px;
+        line-height: 42px;
+        padding: 7px 11px;
+    }
+    .appoinment-area {
+         margin-top: -23px;
+    }
+    .slider-content {
+        margin-top: 40px;
+    }
+    .header-top {
+        padding: 11px 0 15px;
+    }
+    .appoinment-form {
+        padding: 38px 17px;
+    }
+    .appoinment-form form .btn-style-one {
+        margin-top: 18px;
+    }
+    .appoinment-area {
+        padding-bottom: 70px;
+    }
+    .service-area {
+        padding: 70px 0px 40px;
+    }
+    .section-title h2 {
+        font-size: 26px;
+    }
+    .abt-left-thumb {
+        height: 250px;
+    }
+    .abt-right h2.abt-title {
+        font-size: 21px;
+        margin-bottom: 21px;
+    }
+    .about-area {
+        padding: 70px 0px 20px;
+    }
+    .abt-ft-item {
+        flex-basis: 100%;
+        margin-bottom: 44px;
+    }
+    .gallery-area,
+    .our-doctors,
+    .feature-blog-area,
+    .feature-blog-area {
+        padding: 70px 0px 50px;
+    }
+    .cta-content h2 {
+        font-size: 21px;
+        line-height: 31px;
+    }
+    .cta-btn {
+        text-align: left;
+        margin-top: 36px;
+    }
+
+    .testimonial-area {
+        padding: 70px 0px;
+    }
+    .ft-blog {
+        margin-bottom: 30px;
+    }
+    footer .fwidget {
+        margin-bottom: 40px;
+    }
+    .footer-top {
+        padding-bottom: 40px;
+    }
+    .footer-bottom,
+    .footer-bottom ul {
+        text-align: center;
+    }
+
+    /*--------------------------
+        Home Two
+    ----------------------------*/
+    .header-top .f_social {
+        text-align: center;
+        padding: 15px 0px 10px;
+    }
+    .header-middle .logo {
+        text-align: center;
+    }
+    .header-bottom .htp-appoinment {
+        text-align: left;
+    }
+    .hb-style-two {
+        padding: 10px 0px 12px;
+    }
+    .appoiunment-two {
+        padding-bottom: 0;
+    }
+    .ft-blog2,
+    .ft-blog2-right {
+        margin-bottom: 30px;
+    }
+    .important_inner {
+        margin-top: 40px;
+        margin-bottom: 30px;
+    }
+    .fmargin_top {
+        padding-top: 70px;
+    }
+
+    /*--------------------------
+        About Us
+    ----------------------------*/
+    .crumbs_inner h2 {
+        font-size: 31px;
+        margin-bottom: 2px;
+        line-height: 45px;
+    }
+    .happy-client-area {
+        padding: 70px 0px 40px;
+    }
+    .counter-item {
+        margin-bottom: 30px;
+    }
+    .service-details-area {
+        padding: 70px 0px 50px;
+    }
+    .list-of-service {
+        margin-bottom: 40px;
+    }
+    .contact-area {
+        padding: 70px 0px;
+    }
+    .contact-left-cnt {
+        padding: 45px 28px 22px;
+    }
+    .contact-left-cnt {
+        height: auto;
+        margin-bottom: 40px;
+    }
+    #google_map {
+        height: 300px;
+    }
+    .blog-area,
+    .blog-details {
+        padding: 70px 0px;
+    }
+    .widget_sidebar {
+        margin-top: 60px;
+    }
+    .blg-details-content h2 a {
+        font-size: 18px;
+    }
+    .blog-details .blg-thumb {
+        margin-bottom: 24px;
+    }
+    .social-share {
+        margin-bottom: 12px;
+    }
+    .children {
+        padding-left: 38px;
+    }
+    .team-details {
+        padding: 70px 0px 50px;
+    }
+    .tmdl-contact-box h2 {
+        font-size: 19px;
+    }
+    .team-details-left {
+        margin-bottom: 30px;
+    }
+    .tmdr-content h2 {
+        font-size: 21px;
+    }
+}

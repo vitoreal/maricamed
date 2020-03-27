@@ -32,6 +32,7 @@ public class TestConfig implements CommandLineRunner {
 		Perfil pe1 = new Perfil();
 		Perfil pe2 = new Perfil();
 		Perfil pe3 = new Perfil();
+		Perfil pe4 = new Perfil();
 		
 		pe1.setId(null);
 		pe1.setDesc("ADMIN");
@@ -40,9 +41,12 @@ public class TestConfig implements CommandLineRunner {
 		pe2.setDesc("CLINICA");
 		
 		pe3.setId(null);
-		pe3.setDesc("PACIENTE");
+		pe3.setDesc("MEDICO");
 		
-		perfilRepository.saveAll(Arrays.asList(pe1, pe2, pe3));
+		pe4.setId(null);
+		pe4.setDesc("PACIENTE");
+		
+		perfilRepository.saveAll(Arrays.asList(pe1, pe2, pe3, pe4));
 		
 		List<Perfil> lpe = new ArrayList<Perfil>();
 		

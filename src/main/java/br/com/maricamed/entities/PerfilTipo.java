@@ -1,7 +1,7 @@
 package br.com.maricamed.entities;
 
 public enum PerfilTipo {
-	ADMIN(1, "ADMIN"), CLINICA(2, "CLINICA"), PACIENTE(3, "PACIENTE");
+	ADMIN(1, "ADMIN"), CLINICA(2, "CLINICA"), MEDICO(3, "MEDICO"), PACIENTE(4, "PACIENTE");
 	
 	private long cod;
 	private String desc;

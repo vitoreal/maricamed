@@ -1,12 +1,10 @@
 package br.com.maricamed.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import br.com.maricamed.entities.Usuario;
-import br.com.maricamed.validator.UsuarioValidator;
+import br.com.maricamed.entities.Especialidade;
 
 /**
 * <h1>Marica Med - controle de usuario!</h1>
@@ -22,16 +20,14 @@ import br.com.maricamed.validator.UsuarioValidator;
 */
 
 @Controller
-@RequestMapping("usuarios")
-public class UsuarioController {
+@RequestMapping("especialidades")
+public class EspecialidadeController {
 	
-	@Autowired
-	private UsuarioValidator userValidator;
 	
-	@GetMapping("/novo")
-	public String cadastroPorAdmin(Usuario usuario) {
+	@GetMapping("/")
+	public String cadastroPorAdmin(Especialidade especialidade) {
 	
-	    return "usuario/cadastro";
+	    return "especialidade/especialidade";
 	}
 
 

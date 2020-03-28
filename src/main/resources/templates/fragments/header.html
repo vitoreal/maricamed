@@ -6,7 +6,6 @@
 <body>
 	<div th:fragment="cabecalho">
 	
-	
 	 <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -18,28 +17,23 @@
     <!-- header area start -->
     <header>
         <!-- header top area start -->
-        <div class="header-top">
-        	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" sec:authorize="isAuthenticated()">
-			<a class="navbar-brand" th:href="@{/}">Maricá Med - Sistema Médico / Pacientes</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse"
-				data-target="#navbarCollapse" aria-controls="navbarCollapse"
-				aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+        
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark" sec:authorize="isAuthenticated()">
+
 			<div class="collapse navbar-collapse" id="navbarCollapse">
 				<ul class="navbar-nav mr-auto"  sec:authorize="isAuthenticated()">
 					<li class="nav-item dropdown"><a
-						class="btn btn-dark dropdown-toggle" href="#" id="dropdown01"
+						class="btn btn-light dropdown-toggle" href="#" id="dropdown01"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Admistrador</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown01">
-							<a class="dropdown-item" th:href="@{/especialidades}">Especialidades</a> 
+							<a class="dropdown-item" th:href="@{/especialidades/}">Especialidades</a> 
 							<div class="dropdown-divider"></div>
 							<a class="dropdown-item" th:href="@{/usuarios/novo}">Cadastro de Usuários</a>
 							<a class="dropdown-item" th:href="@{/usuarios/lista}">Lista de Usuários</a>
 						</div>
 					</li>
 					<li class="nav-item dropdown"><a
-						class="btn btn-dark dropdown-toggle" href="#" id="dropdown02"
+						class="btn btn-light dropdown-toggle" href="#" id="dropdown02"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médicos</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown02">
 							<a class="dropdown-item" th:href="@{/medicos/dados}">Dados Cadastrais</a>
@@ -49,7 +43,7 @@
 						</div>
 					</li>
 					<li class="nav-item dropdown"><a
-						class="btn btn-dark dropdown-toggle" href="#" id="dropdown03"
+						class="btn btn-light dropdown-toggle" href="#" id="dropdown03"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pacientes</a>
 						<div class="dropdown-menu" aria-labelledby="dropdown03">
 							<a class="dropdown-item" th:href="@{/pacientes}">Cadastrar Dados</a>
@@ -60,9 +54,28 @@
 						</div>
 					</li>				
 				</ul>
-
+				<form th:action="@{/logout}" 
+							  method="post"  class="form-inline mt-2 mt-md-0"  sec:authorize="isAuthenticated()">
+							<div class="btn-group mb-2 mr-sm-2">
+								<button type="button" class="btn btn-light">
+									<i class="fas fa-user"></i> <span class="" sec:authentication="name"></span>
+								</button>
+								<button type="button"
+									class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+								</button>
+								<div class="dropdown-menu">
+									<button type="submit" class="dropdown-item">Sair</button>
+								</div>
+							</div>
+						</form>
+						
+				
 			</div>
 		</nav>
+		
+        <div class="header-top">
+        	
         
           <div class="container">
               <div class="row align-items-center">
@@ -81,22 +94,6 @@
 						  	<a th:href="@{/usuarios/novo/cadastro}"><i class="fa fa-plus"></i> Cadastrar-se</a>
 						  </div>
 						</div>
-	
-						<form th:action="@{/logout}" 
-							  method="post"  class="form-inline mt-2 mt-md-0"  sec:authorize="isAuthenticated()">
-							<div class="btn-group mb-2 mr-sm-2">
-								<button type="button" class="btn btn-light">
-									<i class="fas fa-user"></i> <span class="" sec:authentication="name"></span>
-								</button>
-								<button type="button"
-									class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								</button>
-								<div class="dropdown-menu">
-									<button type="submit" class="dropdown-item">Sair</button>
-								</div>
-							</div>
-						</form>
                   </div>
               </div>
           </div>

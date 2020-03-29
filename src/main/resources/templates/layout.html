@@ -17,7 +17,6 @@
 	<title>Novamedi - One Page Multipurpose Html Template</title>
 	
 	<!-- favicon -->
-	<link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.png">
 	
 	<!-- Bootstrap core CSS -->
 	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css(v=${version}) }" rel="stylesheet" />
@@ -58,7 +57,8 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-	<script th:src="@{/webjars/jquery/jquery.min.js(v=${version}) }"></script>
+		<script th:src="@{/assets/js/vendor/jquery-2.2.4.min.js(v=${version})}"></script>
+	
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js(v=${version}) }"></script>
 	<!-- jQueryUI (autocomplete) -->

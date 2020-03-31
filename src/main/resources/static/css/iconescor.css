@@ -1,0 +1,86 @@
+/* -------------------------------------------------------------------- */
+[class^="iconecor-"],
+[class*=" iconecor-"] {
+  display: inline-block;
+  *margin-right: .3em;
+  vertical-align: text-top;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  
+}
+.iconecor-14 {
+	width: 14px;
+	height: 14px;
+	line-height: 14px;
+  	background-size:14px 14px;
+}
+.iconecor-18 {
+	width: 18px;
+	height: 18px;
+	line-height: 18px;
+	background-size:18px 18px;
+}
+.iconecor-24 {
+	width: 24px;
+	height: 24px;
+	line-height: 24px;
+  	background-size:24px 24px;
+}
+.iconecor-32 {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+  	background-size:32px 32px;
+}
+[class^="iconecor-modal-"],
+[class*=" iconecor-modal-"] {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  *margin-right: .7em;
+  margin-right: .7em;
+  line-height: 32px;
+  vertical-align: text-top;
+  background-size:32px 32px;
+  background-position: 0px 0px;
+  background-repeat: no-repeat;
+  
+}
+/* -------------------------------------------------------------------- */
+
+.iconecor-modal-success {
+	background-image: url("../images/icones/ico-success.png");
+}
+
+.iconecor-modal-error {
+	background-image: url("../images/icones/ico-error.png");
+}
+
+.iconecor-modal-warning {
+	background-image: url("../images/icones/ico-warning.png");
+}
+
+.iconecor-modal-info {
+	background-image: url("../images/icones/ico-info.png");
+}
+.iconecor-facebook {
+	background-image: url("../images/icones/ico-facebook.png");
+}
+.iconecor-instagram {
+	background-image: url("../images/icones/ico-instagram.png");
+}
+.iconecor-whatsapp {
+	background-image: url("../images/icones/ico-whatsapp.png");
+}
+.iconecor-modal-question {
+	background-image: url("../images/icones/ico-question.png");
+}
+
+.iconecor-delete {
+	background-image: url("../image/icones/ico-delete.png");
+}
+
+.iconecor-editar {
+	background-image: url("../image/icones/ico-edit.png");
+}
+

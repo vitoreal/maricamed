@@ -15,18 +15,18 @@ $(document).ready(function() {
 			data: 'data'
 		},
 		aoColumns: [
-			{mData: 'id'},
-			{mData: 'titulo'},
+			{data: 'id'},
+			{data: 'titulo'},
 			{orderable: false,
-				mData: 'id',
+				data: 'id',
 					"render": function(id){
-						return '<a class"btn btn-success btn-sm btn-block" href="/especialidades/editar/"'+id+'" role="button"><i class="fa fa-edit"></i></a>';
+						return '<a class"btn btn-success btn-sm btn-block" href="/especialidades/editar/'+id+'" role="button"><i class="iconecor-editar iconecor-24"></i></a>';
 					}
 			},
 			{orderable: false,
-				mData: 'id',
+				data: 'id',
 					"render": function(id){
-						return '<a class"btn btn-success btn-sm btn-block" href="/especialidades/excluir/"'+id+'" role="button" data-toggle="modal" data-target="#confirm-modal"><i class="fa fa-edit"></i></a>';
+						return '<a class"btn btn-success btn-sm btn-block" href="/especialidades/excluir/'+id+'" role="button" data-toggle="modal" data-target="#confirm-modal"><i class="iconecor-delete iconecor-24"></i></a>';
 					}
 			}
 			

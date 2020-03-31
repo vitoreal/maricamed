@@ -26,13 +26,20 @@ public class EspecialidadeService {
 	@Autowired
 	private Datatables datatables;
 	
+	@Transactional(readOnly = true)
 	public List<Especialidade> findAll(){
 		return repository.findAll();
 	}
 	
+	@Transactional(readOnly = true)
 	public Especialidade findById(Long id){
 		Optional<Especialidade> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
+	
+	@Transactional(readOnly = false)
+	public void remover(Long id){
+		repository.deleteById(id);
 	}
 	
 	@Transactional(readOnly = false)
@@ -40,7 +47,6 @@ public class EspecialidadeService {
 		repository.save(especialidade);
 	}
 	
-	@Transactional(readOnly = true)
 	public Map<String, Object> buscarEspecialidades(HttpServletRequest request){
 		
 		datatables.setRequest(request);
@@ -51,4 +57,6 @@ public class EspecialidadeService {
 		
 		return datatables.getResponse(page);		
 	}
+	
+	
 }

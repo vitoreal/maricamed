@@ -1,5 +1,7 @@
 package br.com.maricamed.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,9 +50,9 @@ public class EspecialidadeController {
 	
 	@GetMapping("/datatables/server")
 	public ResponseEntity<?> datatableListar(HttpServletRequest request) {
-	
-	    return ResponseEntity.ok(service.buscarEspecialidades(request));
+		Map<String, Object> respBD = service.buscarEspecialidades(request);
+		ResponseEntity<Map<String, Object>> resp = ResponseEntity.ok(respBD);
+	    return resp;
 	}
-
 
 }

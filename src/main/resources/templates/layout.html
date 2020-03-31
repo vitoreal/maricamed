@@ -19,9 +19,9 @@
 	<!-- favicon -->
 	
 	<!-- Bootstrap core CSS -->
-	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css(v=${version}) }" rel="stylesheet" />
-	<link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
-	<link href="https://cdn.datatables.net/responsive/2.2.1/css/responsive.dataTables.min.css" rel="stylesheet"/>
+	<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css(v=${version})}" rel="stylesheet" />
+	<link th:href="@{/assets/css/dataTables.bootstrap4.min.css}" rel="stylesheet" />
+	<link th:href="@{/assets/css/responsive.dataTables.min.css}" rel="stylesheet"/>
 
 	<link rel="stylesheet" th:href="@{/assets/css/font-awesome.min.css}">
     <link rel="stylesheet" th:href="@{/assets/css/flaticon.css}">
@@ -57,17 +57,19 @@
 	<!-- Bootstrap core JavaScript
     ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
-		<script th:src="@{/assets/js/vendor/jquery-2.2.4.min.js(v=${version})}"></script>
+	<script th:src="@{/assets/js/vendor/jquery-3.3.1.min.js}"></script>
 	
 	<script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js(v=${version}) }"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js(v=${version})}"></script>
+	
 	<!-- jQueryUI (autocomplete) -->
 	<script src='https://code.jquery.com/ui/1.12.1/jquery-ui.min.js'></script>
+	
 	<!-- 	Datatables JS -->
-	<script	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script>
-	<script	src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script	src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-	<script	src="https://cdn.datatables.net/responsive/2.2.1/js/dataTables.responsive.min.js"></script>
+	<script	th:src="@{/assets/js/moment-with-locales.min.js}"></script>
+	<script	th:src="@{/assets/js/jquery.dataTables.min.js}"></script>
+	<script	th:src="@{/assets/js/dataTables.bootstrap4.min.js}"></script>
+	<script	th:src="@{/assets/js/dataTables.responsive.min.js}"></script>
 	
     <!-- others plugins -->
     <script th:src="@{/assets/js/owl.carousel.min.js}"></script>

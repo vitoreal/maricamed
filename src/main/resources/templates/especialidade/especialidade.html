@@ -12,9 +12,10 @@
 		
 		<div class="album py-5 bg-light">
 			<div class="container">
-				<h2 class="jumbotron-heading">Especialidades</h2>
+				
 				<div class="d-flex justify-content-center">					
-					<div class="col-md-10">						
+					<div class="col-md-10">
+						<h3 class="jumbotron-heading mb-4">Especialidades</h3>
 						<div th:replace="fragments/alert"></div>
 						<form th:action="@{/especialidades/salvar}" th:object="${especialidade}"
 							method="POST" class="was-validated">

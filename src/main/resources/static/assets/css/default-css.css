@@ -21,12 +21,12 @@
 *:focus {
     outline: 0;
 }
-
+/*
 html {
     font-size: 62.5%;
     -webkit-font-smoothing: antialiased;
 }
-
+*/
 body {
     background: #fff;
     font-weight: normal;

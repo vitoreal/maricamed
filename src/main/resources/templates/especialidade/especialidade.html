@@ -14,18 +14,17 @@
 			<div class="container">
 				<h2 class="jumbotron-heading">Especialidades</h2>
 				<div class="d-flex justify-content-center">					
-					<div class="col-md-8">						
+					<div class="col-md-10">						
 						<div th:replace="fragments/alert"></div>
 						<form th:action="@{/especialidades/salvar}" th:object="${especialidade}"
 							method="POST" class="was-validated">
 							
 							<div class="form-group row">
 								<label for="especialidade" 
-									class="col-sm-2 col-form-label">Especialidade: </label>
+									class="col-sm-2 col-form-label">Especialidade:</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" th:field="*{titulo}"
-										id="especialidade" placeholder="Clínico Geral" required />
-									<div class="invalid-feedback">Especialidade é requerida.</div>	
+										id="especialidade" required />
 								</div>
 							</div>		
 							<div class="form-group row">
@@ -33,7 +32,7 @@
 									class="col-sm-2 col-form-label">Descrição:</label>
 								<div class="col-sm-10">
 									<textarea class="form-control" th:field="*{descricao}"
-										id="descricao" rows="3"></textarea>
+										id="descricao" rows="5"></textarea>
 									<small class="form-text text-muted" >Se desejar, adicione uma descrição sobre a especialidade.</small>	
 								</div>
 							</div>	
@@ -41,9 +40,9 @@
 							<input type="hidden" th:field="*{id}"/>	
 											
 							<div class="form-group row">
-								<div class="col-sm-10">
-									<button type="submit" class="btn btn-primary" data-toggle="tooltip"
-											data-placement="right" title="Salvar"><i class="fas fa-save"></i></button>
+								<div class="col-sm-12">
+									<button type="submit" class="btn btn-primary float-right" 
+									data-placement="right" title="Salvar"><i class="fa fa-save"></i> Salvar</button>
 								</div>
 							</div>
 						</form>

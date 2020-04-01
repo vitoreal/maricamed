@@ -16,12 +16,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "medicos")
+@Table(name = "clinica")
 public class Clinica extends AbstractEntity {
 
-	private String telefone1;
-	private String telefone2;
-	private String celular;
+	private String descricao;
 	
 	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -59,29 +57,13 @@ public class Clinica extends AbstractEntity {
 	public Clinica(Usuario usuario) {
 		this.usuario = usuario;
 	}
-
-	public String getTelefone1() {
-		return telefone1;
+	
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setTelefone1(String telefone1) {
-		this.telefone1 = telefone1;
-	}
-
-	public String getTelefone2() {
-		return telefone2;
-	}
-
-	public void setTelefone2(String telefone2) {
-		this.telefone2 = telefone2;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public Set<Especialidade> getEspecialidades() {

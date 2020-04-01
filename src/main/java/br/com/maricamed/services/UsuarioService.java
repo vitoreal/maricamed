@@ -1,5 +1,6 @@
 package br.com.maricamed.services;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -13,6 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,6 +68,7 @@ public class UsuarioService implements UserDetailsService {
 		return authorities;
 	}
 
+	@Transactional(readOnly = true)
 	public Map<String, Object> buscarTodos(HttpServletRequest request) {
 		datatables.setRequest(request);
 		datatables.setColunas(DatatablesColunas.USUARIOS);
@@ -74,5 +77,15 @@ public class UsuarioService implements UserDetailsService {
 				: repository.findAllByNamePerfilEmail(datatables.getSearch(), datatables.getPageable());
 		
 		return datatables.getResponse(page);
+	}
+
+	@Transactional(readOnly = false)
+	public void salvar(Usuario usuario) {
+		
+		String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		usuario.setSenha(crypt);
+		usuario.setDtCadastro(Instant.now());
+		repository.save(usuario);
+		
 	}
 }

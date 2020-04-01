@@ -1,8 +1,10 @@
 package br.com.maricamed.entities;
 
+import java.time.Instant;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -15,6 +17,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "pacientes")
 public class Paciente extends AbstractEntity {
+	
+	@Column(name = "data_nascimento", length = 10)
+	private Instant dtNascimento;
 	
 	@JsonIgnore
 	@OneToMany(mappedBy = "paciente")
@@ -38,6 +43,14 @@ public class Paciente extends AbstractEntity {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Instant getDtNascimento() {
+		return dtNascimento;
+	}
+
+	public void setDtNascimento(Instant dtNascimento) {
+		this.dtNascimento = dtNascimento;
 	}
 
 }

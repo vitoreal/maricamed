@@ -19,12 +19,18 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Table(name = "usuarios", indexes = {@Index(name = "idx_usuario_email", columnList = "email")})
 public class Usuario extends AbstractEntity {	
 	
-	@Column(name = "nome", unique = true, nullable = false, length = 200)
+	@Column(name = "nome", nullable = false, length = 200)
 	private String nome;
-
-	@Column(name = "data_nascimento", length = 10)
-	private Instant dtNascimento;
 	
+	@Column(name = "telefone1", length = 20)
+	private String telefone1;
+	
+	@Column(name = "telefone2", length = 20)
+	private String telefone2;
+	
+	@Column(name = "celular", length = 20)
+	private String celular;
+
 	@Column(name = "data_cadastro", nullable = false, length = 10)
 	private Instant dtCadastro;
 	
@@ -76,13 +82,29 @@ public class Usuario extends AbstractEntity {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public Instant getDtNascimento() {
-		return dtNascimento;
+	
+	public String getTelefone1() {
+		return telefone1;
 	}
 
-	public void setDtNascimento(Instant dtNascimento) {
-		this.dtNascimento = dtNascimento;
+	public void setTelefone1(String telefone1) {
+		this.telefone1 = telefone1;
+	}
+
+	public String getTelefone2() {
+		return telefone2;
+	}
+
+	public void setTelefone2(String telefone2) {
+		this.telefone2 = telefone2;
+	}
+
+	public String getCelular() {
+		return celular;
+	}
+
+	public void setCelular(String celular) {
+		this.celular = celular;
 	}
 	
 	public Instant getDtCadastro() {

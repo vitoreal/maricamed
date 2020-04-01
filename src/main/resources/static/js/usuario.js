@@ -32,19 +32,19 @@ $(document).ready(function() {
 				},
 				{	data : 'id',	
 					render : function(id) {
-						return ''.concat('<a class="btn btn-success btn-sm btn-block"', ' ')
+						return ''.concat('<a ', ' ')
 								 .concat('href="').concat('/usuarios/editar/credenciais/usuario/').concat(id, '"', ' ') 
-								 .concat('role="button" title="Editar" data-toggle="tooltip" data-placement="right">', ' ')
-								 .concat('<i class="fas fa-edit"></i></a>');
+								 .concat('role="button" title="Editar">', ' ')
+								 .concat('<i class="iconecor-credencial iconecor-24"></i></a>');
 					},
 					orderable : false
 				},
 				{	data : 'id',	
 					render : function(id) {
-						return ''.concat('<a class="btn btn-info btn-sm btn-block"', ' ') 
+						return ''.concat('<a href="#"', ' ') 
 								 .concat('id="dp_').concat(id).concat('"', ' ') 
-								 .concat('role="button" title="Editar" data-toggle="tooltip" data-placement="right">', ' ')
-								 .concat('<i class="fas fa-edit"></i></a>');
+								 .concat('role="button" title="Editar">', ' ')
+								 .concat('<i class="iconecor-editar iconecor-24"></i></a>');
 					},
 					orderable : false
 				}

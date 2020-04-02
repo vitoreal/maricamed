@@ -8,11 +8,17 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import br.com.maricamed.entities.PerfilTipo;
 import br.com.maricamed.services.UsuarioService;
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+	
+	private static final String ADMIN = PerfilTipo.ADMIN.getDesc();
+	private static final String CLINICA = PerfilTipo.CLINICA.getDesc();
+	private static final String MEDICO = PerfilTipo.MEDICO.getDesc();
+	private static final String PACIENTE = PerfilTipo.PACIENTE.getDesc();
 	
 	@Autowired
 	private UsuarioService userService;
@@ -26,16 +32,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home/",  "/").permitAll()
                 
                 // Acessos privado admin
-                .antMatchers("/usuarios/**, /especialidades/**").hasAuthority("ADMIN")
+                .antMatchers("/usuarios/**, /especialidades/**").hasAuthority(ADMIN)
                 
                 // Acessos privado medico
-                .antMatchers("/medicos/**").hasAuthority("MEDICO")
+                .antMatchers("/medicos/**").hasAuthority(MEDICO)
                 
                 // Acessos privado clinica
-                .antMatchers("/clinicas/**").hasAuthority("CLINICA")
+                .antMatchers("/clinicas/**").hasAuthority(CLINICA)
                 
                 // Acessos privado paciente
-                .antMatchers("/pacientes/**").hasAuthority("PACIENTE")
+                .antMatchers("/pacientes/**").hasAuthority(PACIENTE)
                 
                 .anyRequest().authenticated()
                 .and()

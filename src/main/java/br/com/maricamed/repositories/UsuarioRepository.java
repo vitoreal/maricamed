@@ -11,8 +11,13 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 	
 	Usuario findByEmail(String email);
 	
-	@Query("Select u FROM Usuario u "
+	@Query("select u FROM Usuario u "
 			+ "JOIN u.perfis p "
 			+ "WHERE u.email like :search% OR p.desc like :search% OR u.nome LIKE :search%")
 	Page<Usuario> findAllByNamePerfilEmail(String search, Pageable pageable);
+	
+	@Query("select u FROM Usuario u "
+			+ "JOIN u.perfis p "
+			+ "WHERE u.id = :usuarioId AND p.id IN :perfisId%")
+	Usuario findByIdAndPerfis(Long usuarioId, Long[] perfisId);
 }

@@ -33,10 +33,12 @@ public class UsuarioService implements UserDetailsService {
 	@Autowired
 	private Datatables datatables;
 	
+	@Transactional(readOnly = true)
 	public List<Usuario> findAll(){
 		return repository.findAll();
 	}
 	
+	@Transactional(readOnly = true)
 	public Usuario findById(Long id){
 		Optional<Usuario> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
@@ -87,5 +89,11 @@ public class UsuarioService implements UserDetailsService {
 		usuario.setDtCadastro(Instant.now());
 		repository.save(usuario);
 		
+	}
+
+	@Transactional(readOnly = true)
+	public Usuario buscarPorIdEPerfis(Long usuarioId, Long[] perfisId) {
+		repository.findByIdAndPerfis(usuarioId, perfisId);
+		return null;
 	}
 }

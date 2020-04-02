@@ -5,6 +5,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -45,9 +46,16 @@ public class EspecialidadeController {
 	
 	@PostMapping("/salvar")
 	public String salvar(Especialidade especialidade, RedirectAttributes attr) {
-		service.save(especialidade);
-		attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
+		try {
+			service.save(especialidade);
+			attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
+		} catch (DataIntegrityViolationException ex) {
+			attr.addFlashAttribute("falha", "Error: Especialidade já existente!");
+			attr.addFlashAttribute("especialidade", especialidade);
+		}
+		
 		return "redirect:/especialidades";
+			
 	}
 	
 	@GetMapping("/editar/{id}")

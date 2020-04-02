@@ -88,6 +88,17 @@
 
 	</section>
 	<script	th:src="~{}" th:fragment="js"></script>
-	<script th:inline="javascript" th:fragment="inlinescript"></script>
+	<script th:inline="javascript" th:fragment="inlinescript">
+
+	$('#perfis').ready(fucntion(){
+		var perfis = [[${usuario.perfis}]];
+		
+		$.each(perfis, function(k, v){
+			$('#perfis option[value="'+v.id+'"]').attr('selected', 'selected')
+		});
+		
+	});
+	
+	</script>
 </body>
 </html>

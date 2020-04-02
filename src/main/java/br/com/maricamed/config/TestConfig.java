@@ -50,17 +50,32 @@ public class TestConfig implements CommandLineRunner {
 		lpe.add(perf.get());
 		
 		Usuario user = new Usuario();
+		Usuario user2 = new Usuario();
+		
 		user.setId(null);
 		user.setDtCadastro(Instant.now());
 		user.setTelefone1("(21) 98807-7118");
 		user.setNome("Root");
 		//user.setDtNascimento(Instant.parse("1981-11-14T19:53:07Z"));
 		user.setEmail("vitoreselecao@gmail.com");
+		// senha 123456
 		user.setSenha("$2a$10$N.hRxj.F4LkpLwpslOqUTOGQYoU3vuKkfv1NYbs4vOloAjUmRuQLy");
 		user.setAtivo(true);
 		user.setPerfis(lpe);
 		
+		user2.setId(null);
+		user2.setDtCadastro(Instant.now());
+		user2.setTelefone1("(21) 12347-7894");
+		user2.setNome("Frank Lyra");
+		//user.setDtNascimento(Instant.parse("1981-11-14T19:53:07Z"));
+		user2.setEmail("frank.desenv@gmail.com");
+		// senha 123456
+		user2.setSenha("$2a$10$N.hRxj.F4LkpLwpslOqUTOGQYoU3vuKkfv1NYbs4vOloAjUmRuQLy");
+		user2.setAtivo(true);
+		user2.setPerfis(lpe);
+		
 		userRepository.save(user);
+		userRepository.save(user2);
 		
 	}
 	

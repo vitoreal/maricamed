@@ -2,6 +2,9 @@
 $(document).ready(function() {
 	moment.locale('pt-BR');
 	var table = $('#table-usuarios').DataTable({
+		"language": {
+            "url": "/util/datatable-pt-br.json"
+        },
 		searching : true,
 		lengthMenu : [ 5, 10 ],
 		processing : true,

@@ -22,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
 	        
             .authorizeRequests()
-                .antMatchers("/webjars/**", "/assets/**", "/css/**", "/image/**", "/img/**", "/js/**").permitAll()
+                .antMatchers("/webjars/**", "/assets/**", "/css/**", "/image/**", "/img/**", "/js/**", "/util/**").permitAll()
                 .antMatchers("/home/",  "/").permitAll()
                 
                 // Acessos privado admin

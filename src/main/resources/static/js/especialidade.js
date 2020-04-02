@@ -4,6 +4,9 @@ $(document).ready(function() {
 	$.fn.dataTable.ext.errMode = 'throw';
 
 	var table = $('#table-especializacao').DataTable({
+		"language": {
+            "url": "/util/datatable-pt-br.json"
+        },
 		searching: true,
 		order: [[1, "asc"]],
 		lengthMenu: [5, 10],

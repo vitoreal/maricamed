@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.maricamed.entities.Clinica;
 import br.com.maricamed.entities.Perfil;
 import br.com.maricamed.entities.PerfilTipo;
 import br.com.maricamed.entities.Usuario;
+import br.com.maricamed.services.ClinicaService;
 import br.com.maricamed.services.UsuarioService;
 
 /**
@@ -40,6 +42,9 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService service;
+	
+	@Autowired
+	private ClinicaService clinicaService;
 	
 	@GetMapping("/novo")
 	public String cadastroPorAdmin(Usuario usuario) {
@@ -92,7 +97,13 @@ public class UsuarioController {
 		   !us.getPerfis().contains(new Perfil(PerfilTipo.CLINICA.getCod()))		) {
 			return new ModelAndView("usuario/cadastro", "usuario", us);
 		} else if(us.getPerfis().contains(new Perfil(PerfilTipo.CLINICA.getCod()))) {
-			return new ModelAndView("especialidade/especialidade");
+			
+			Clinica clinica = clinicaService.buscaPorUsuarioId(usuarioId);
+			
+			return clinica.hasNotId() 
+					? new ModelAndView("clinica/cadastro", "clinica", new Clinica(new Usuario(usuarioId)))
+					: new ModelAndView("clinica/cadastro", "clinica", clinica);
+			
 		} else if(us.getPerfis().contains(new Perfil(PerfilTipo.PACIENTE.getCod()))) {
 			ModelAndView model = new ModelAndView("error");
 			model.addObject("status", 403);

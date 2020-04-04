@@ -47,7 +47,7 @@ public class UsuarioService implements UserDetailsService {
 	@Transactional(readOnly = true)
 	public Usuario buscaPorEmail(String email){
 		return repository.findByEmail(email);
-	}
+	}	
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -55,7 +55,6 @@ public class UsuarioService implements UserDetailsService {
 		Usuario usuario = buscaPorEmail(username);
 		if (usuario == null)
 			throw new UsernameNotFoundException(username);
-		
 
 		return new User(usuario.getEmail(), usuario.getSenha(),
 				AuthorityUtils.createAuthorityList(getAuthorities(usuario.getPerfis())));

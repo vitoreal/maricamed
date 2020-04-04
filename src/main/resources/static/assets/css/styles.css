@@ -367,8 +367,8 @@
 }
 
 .slider-content h2 {
-    font-size: 60px;
-    font-weight: 700;
+    font-size: 40px;
+    font-weight: 600;
     color: #fff;
     letter-spacing: 0;
     line-height: 65px;
@@ -610,7 +610,7 @@
 
 .section-title {
     text-align: center;
-    margin-bottom: 50px;
+    /*margin-bottom: 50px;*/
 }
 
 .section-title h2 {

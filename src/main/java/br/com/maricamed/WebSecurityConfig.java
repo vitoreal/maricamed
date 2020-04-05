@@ -32,13 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/home/",  "/").permitAll()
                 
                 // Acessos privado admin
-                .antMatchers("/usuarios/**, /especialidades/**", "/clinicas/**", "/medicos/**", "/pacientes/**").hasAuthority(ADMIN)
+                .antMatchers("/usuarios/**, /especialidades/**").hasAuthority(ADMIN)
                 
                 // Acessos privado medico
                 .antMatchers("/medicos/**").hasAuthority(MEDICO)
                 
                 // Acessos privado clinica
-                .antMatchers("/clinicas/**").hasAuthority(CLINICA)
+                .antMatchers("/clinicas/**").hasAnyAuthority(CLINICA, ADMIN)
                 
                 // Acessos privado paciente
                 .antMatchers("/pacientes/**").hasAuthority(PACIENTE)

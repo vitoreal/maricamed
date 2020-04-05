@@ -12,7 +12,7 @@ import br.com.maricamed.entities.Clinica;
 public interface ClinicaRepository extends JpaRepository<Clinica, Long> {
 	
 	@Query("Select c FROM Clinica c WHERE c.usuario.nome LIKE :search%")
-	Page<Clinica> findAllByTitulo(String search, Pageable pageable);
+	Page<Clinica> findAllByName(String search, Pageable pageable);
 	
 	@Query("Select c FROM Clinica c WHERE c.usuario.id = :id")
 	Optional<Clinica> findByUsuarioId(Long id);

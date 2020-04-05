@@ -17,6 +17,7 @@ public class Endereco extends AbstractEntity {
     private String ibge;
 	private String gia;
 	private String cidade;
+	private String estado;
 	
 	public String getCep() {
 		return cep;
@@ -72,7 +73,11 @@ public class Endereco extends AbstractEntity {
 	public void setCidade(String cidade) {
 		this.cidade = cidade;
 	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 	
-	
-
 }

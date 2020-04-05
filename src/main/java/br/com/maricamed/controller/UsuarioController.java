@@ -15,7 +15,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import br.com.maricamed.entities.Usuario;
-import br.com.maricamed.services.ClinicaService;
 import br.com.maricamed.services.UsuarioService;
 
 /**
@@ -37,9 +36,6 @@ public class UsuarioController {
 	
 	@Autowired
 	private UsuarioService service;
-	
-	@Autowired
-	private ClinicaService clinicaService;
 	
 	@GetMapping("/novo")
 	public String cadastroPorAdmin(Usuario usuario) {

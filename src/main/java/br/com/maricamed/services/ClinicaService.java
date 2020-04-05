@@ -36,33 +36,29 @@ public class ClinicaService {
 		Optional<Clinica> obj = repository.findById(id);
 		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
+
+	@Transactional(readOnly = false)
+	public void salvar(Clinica clinica) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	@Transactional(readOnly = false)
 	public void remover(Long id){
 		repository.deleteById(id);
 	}
 	
-	@Transactional(readOnly = false)
-	public void save(Clinica clinica){
-		repository.save(clinica);
-	}
-	
-	@Transactional(readOnly = false)
-	public Map<String, Object> buscarClinicas(HttpServletRequest request){
-		
+	@Transactional(readOnly = true)
+	public Map<String, Object> buscarTodos(HttpServletRequest request) {
 		datatables.setRequest(request);
 		datatables.setColunas(DatatablesColunas.CLINICAS);
 		Page<?> page = datatables.getSearch().isEmpty() 
 				? repository.findAll(datatables.getPageable()) 
-				: repository.findAllByTitulo(datatables.getSearch(), datatables.getPageable());
+				: repository.findAllByName(datatables.getSearch(), datatables.getPageable());
 		
-		return datatables.getResponse(page);		
+		return datatables.getResponse(page);
 	}
-	
-	@Transactional(readOnly = false)
-	public Clinica buscaPorUsuarioId(Long id) {
-		return repository.findByUsuarioId(id).orElse(new Clinica());
-	}
+
 	
 	
 }

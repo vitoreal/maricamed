@@ -13,21 +13,24 @@
 
 				<div class="row">
 					<div class="col-md-12">
+						<a class="btn btn-primary float-right" data-placement="right" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Nova Clínica</a>
+					</div>
+					<div class="col-md-12">
 
-						<h2>Usuários Cadastrados</h2>
+						<h2>Clinicas Cadastradas</h2>
 
-						<table id="table-usuarios"
+						<table id="tbl-datatable"
 							class="table table-sm table-striped table-bordered nowrap"
 							style="width: 100%">
 							<thead class="thead-dark">
 								<tr>
-									<th scope="col">#</th>
 									<th scope="col">Nome</th>
 									<th scope="col">Email</th>
 									<th scope="col">Ativo</th>
-									<th scope="col">Perfis</th>
-									<th scope="col">Credenciais</th>
+									<th scope="col">Horários</th>
+									<th scope="col">Médicos</th>
 									<th scope="col">Dados Pessoais</th>
+									<th scope="col">Alterar Senha</th>
 								</tr>
 							</thead>
 						</table>
@@ -39,7 +42,7 @@
 		</main>
 		
 	</section>
-	<script	th:src="@{/js/usuario.js(v=${version})}" th:fragment="js"></script>
+	<script	th:src="@{/js/clinica.js(v=${version})}" th:fragment="js"></script>
 	<script th:inline="javascript" th:fragment="inlinescript"></script>
 </body>
 </html>

@@ -37,7 +37,8 @@ $(document).ready(function() {
 				{	data : 'id',	
 					render : function(id) {
 						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/usuarios/editar/credenciais/usuario/').concat(id, '"', ' ') 
+								 .concat('href="').concat('/usuarios/editar/credenciais/usuario/')
+								 .concat(id, '"', ' ') 
 								 .concat('role="button" title="Editar">', ' ')
 								 .concat('<i class="iconecor-credencial iconecor-24"></i></a>');
 					},
@@ -45,8 +46,9 @@ $(document).ready(function() {
 				},
 				{	data : 'id',	
 					render : function(id) {
-						return ''.concat('<a href="#"', ' ') 
-								 .concat('id="dp_').concat(id).concat('"', ' ') 
+						return ''.concat('<a ', ' ')
+								 .concat('href="').concat('/usuarios/editar/dados/usuario/')
+								 .concat(id, '"', ' ') 
 								 .concat('role="button" title="Editar">', ' ')
 								 .concat('<i class="iconecor-editar iconecor-24"></i></a>');
 					},
@@ -54,14 +56,5 @@ $(document).ready(function() {
 				}
 		]
 	});
-	
-	$('#table-usuarios tbody').on('click', '[id*="dp_"]', function () {
-    	var data = table.row($(this).parents('tr')).data();
-    	var aux = new Array();
-		$.each(data.perfis, function( index, value ) {
-			  aux.push(value.id);
-		});
-		document.location.href = '/usuarios/editar/dados/usuario/' + data.id + '/perfis/' + aux;
-    } );	
 	
 });	

@@ -9,15 +9,6 @@
 	<section class="layout-content" layout:fragment="corpo">
 		<main role="main">
 		
-		<section class="jumbotron text-center">			
-			<img class="d-block mx-auto" th:src="@{/image/spring-security.png}"
-				width="72" height="72">
-			<div class="container">
-				<h1 class="jumbotron-heading">Clínica Spring Security</h1>
-				<p class="lead text-muted">Médicos e Especialistas</p>
-			</div>
-		</section>
-
 		<div class="album py-5 bg-light">
 			<div class="container">
 
@@ -34,26 +25,49 @@
 									<input type="text" class="form-control"
 										th:field="*{nome}" id="nome" placeholder="João da Silva"
 										required/>
-									<div class="invalid-feedback">Nome completo é requerido.</div>
 								</div>
 							</div>
 							<div class="form-row">
 								<div class="form-group col-md-6">
-									<label for="crm">Inscrição CRM</label> 
-									<input type="text" class="form-control" id="crm" placeholder="000000"
-										th:field="*{crm}" required />
-									<div class="invalid-feedback">CRM é requerido.</div>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="dtInscricao">Data da Inscrição</label> 
-									<input
-										type="date" class="form-control" id="dtInscricao"
-										th:field="*{dtInscricao}" required />
-									<div class="invalid-feedback">Data de Inscrição CRM é requerida.</div>	
+									<label for="cep" class="form-group">CEP</label>
+									<input type="text" class="form-control"
+										th:field="*{endereco.cep}" id="cep"
+										required/>
 								</div>
 							</div>
-
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="cidade" class="form-group">Cidade</label>
+									<input type="text" class="form-control"
+										th:field="*{endereco.cidade}" id="cidade"
+										required/>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="logradouro" class="form-group">Endereço</label>
+									<input type="text" class="form-control"
+										th:field="*{endereco.logradouro}" id="logradouro"
+										required/>
+								</div>
+							</div>
 							
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="complemento" class="form-group">Complemento</label>
+									<input type="text" class="form-control"
+										th:field="*{endereco.complemento}" id="complemento"
+										required/>
+								</div>
+							</div>
+							<div class="form-row">
+								<div class="form-group col-md-6">
+									<label for="bairro" class="form-group">Bairro</label>
+									<input type="text" class="form-control"
+										th:field="*{endereco.bairro}" id="bairro"
+										required/>
+								</div>
+							</div>							
 
 							<div id="especialidades-selecionadas">
 								<div class="form-group">

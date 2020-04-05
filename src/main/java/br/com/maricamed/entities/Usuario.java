@@ -38,7 +38,7 @@ public class Usuario extends AbstractEntity {
 	private String email;
 	
 	@JsonIgnore
-	@Column(name = "senha", nullable = false)
+	@Column(name = "senha")
 	private String senha;
 	
 	@ManyToMany

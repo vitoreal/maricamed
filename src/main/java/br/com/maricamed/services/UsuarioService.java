@@ -83,9 +83,13 @@ public class UsuarioService implements UserDetailsService {
 	@Transactional(readOnly = false)
 	public void salvar(Usuario usuario) {
 		
-		String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
-		usuario.setSenha(crypt);
-		usuario.setDtCadastro(Instant.now());
+		if(usuario.getSenha() != null) {
+			String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
+			usuario.setSenha(crypt);
+		}
+		if(usuario.getId() != null) {
+			usuario.setDtCadastro(Instant.now());
+		}
 		repository.save(usuario);
 		
 	}

@@ -1,8 +1,5 @@
 package br.com.maricamed.controller;
 
-import java.util.Arrays;
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
-import br.com.maricamed.entities.Clinica;
-import br.com.maricamed.entities.Perfil;
-import br.com.maricamed.entities.PerfilTipo;
 import br.com.maricamed.entities.Usuario;
 import br.com.maricamed.services.ClinicaService;
 import br.com.maricamed.services.UsuarioService;
@@ -61,57 +56,62 @@ public class UsuarioController {
 	    return ResponseEntity.ok(service.buscarTodos(request));
 	}
 	
-	// salvar cadastro de usuarios por administrador
 	@PostMapping("cadastro/salvar")
-	public String salvarUsuario(Usuario usuario, RedirectAttributes attr) {
-		List<Perfil> perfis = usuario.getPerfis();
-		if(perfis.size() > 2 || 
-				perfis.containsAll(Arrays.asList(new Perfil(PerfilTipo.ADMIN.getCod()), new Perfil(PerfilTipo.PACIENTE.getCod()))) ||
-				perfis.containsAll(Arrays.asList(new Perfil(PerfilTipo.CLINICA.getCod()), new Perfil(PerfilTipo.PACIENTE.getCod())))) {
-			attr.addFlashAttribute("falha", "Paciente não pode ser Admin e/ou Médico");
-			attr.addFlashAttribute("usuario", usuario);
-		} else {
-			try {
+	public RedirectView salvarUsuario(Usuario usuario, RedirectAttributes attr) {
+		try {
+			if (usuario.getId() != null) {
+				usuario = updateUsuario(usuario);
+			} 
 			service.salvar(usuario);
 			attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
-			} catch (DataIntegrityViolationException ex) {
-				attr.addFlashAttribute("falha", "Error: E-mail já existente!");
-				attr.addFlashAttribute("usuario", usuario);
-			}
+		} catch (DataIntegrityViolationException ex) {
+			attr.addFlashAttribute("falha", "Error: E-mail já existente!");
+			attr.addFlashAttribute("usuario", usuario);
 		}
-		return "redirect:/usuarios/novo/";
+		RedirectView rv = new RedirectView ();
+		if(usuario.getId() != null) {
+			rv.setUrl("/usuarios/editar/dados/usuario/"+usuario.getId());
+			attr.addFlashAttribute("id", usuario.getId());
+			
+		} else {
+			rv.setUrl("/usuarios/novo/");
+		}
+		return rv;
+	}
+	
+	public Usuario updateUsuario(Usuario usuario) {
+		Usuario user = service.findById(usuario.getId());
+		
+		user.setNome(usuario.getNome());
+		user.setTelefone1(usuario.getTelefone1());
+		user.setTelefone2(usuario.getTelefone2());
+		user.setCelular(usuario.getCelular());
+		user.setPerfis(usuario.getPerfis());
+		user.setAtivo(usuario.isAtivo());
+		return user;
+	}
+	
+	@PostMapping("cadastro/alterar-senha")
+	public RedirectView alterarSenhaUsuario(Usuario usuario, RedirectAttributes attr) {
+		
+		Usuario user = service.findById(usuario.getId());
+		user.setSenha(usuario.getSenha());
+		service.salvar(user);
+		attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
+		
+		RedirectView rv = new RedirectView ();
+		rv.setUrl("/usuarios/editar/credenciais/usuario/"+usuario.getId());
+		attr.addFlashAttribute("id", usuario.getId());
+		return rv;
 	}
 	
 	@GetMapping("/editar/credenciais/usuario/{id}")
 	public ModelAndView preEditarCredenciais(@PathVariable("id") Long id) {
-	    return new ModelAndView("usuario/cadastro", "usuario", service.findById(id));
+	    return new ModelAndView("usuario/alterar-senha", "usuario", service.findById(id));
 	}
 	
-	@GetMapping("/editar/dados/usuario/{id}/perfis/{perfis}")
-	public ModelAndView preEditarCadastroDadosPessoais(@PathVariable("id") Long usuarioId, 
-											@PathVariable("perfis") Long[] perfisId) {
-		
-		Usuario us = service.buscarPorIdEPerfis(usuarioId, perfisId);
-		
-		if(us.getPerfis().contains(new Perfil(PerfilTipo.ADMIN.getCod())) &&
-		   !us.getPerfis().contains(new Perfil(PerfilTipo.CLINICA.getCod()))		) {
-			return new ModelAndView("usuario/cadastro", "usuario", us);
-		} else if(us.getPerfis().contains(new Perfil(PerfilTipo.CLINICA.getCod()))) {
-			
-			Clinica clinica = clinicaService.buscaPorUsuarioId(usuarioId);
-			
-			return clinica.hasNotId() 
-					? new ModelAndView("clinica/cadastro", "clinica", new Clinica(new Usuario(usuarioId)))
-					: new ModelAndView("clinica/cadastro", "clinica", clinica);
-			
-		} else if(us.getPerfis().contains(new Perfil(PerfilTipo.PACIENTE.getCod()))) {
-			ModelAndView model = new ModelAndView("error");
-			model.addObject("status", 403);
-	    	model.addObject("error", "Área Restrita");
-	    	model.addObject("message", "Os dados do Paciente são restritos a ele.");
-	    	return model;
-		}
-		
-		return new ModelAndView("redirect:/usuarios/lista");
+	@GetMapping("/editar/dados/usuario/{id}")
+	public ModelAndView preEditarCadastroDadosPessoais(@PathVariable("id") Long id) {
+		return new ModelAndView("usuario/cadastro", "usuario", service.findById(id));
 	}
 }

@@ -96,12 +96,6 @@ public class ClinicaController {
 				}
 				
 				if(clinica.getEndereco() != null) {
-					enderecoService.deleteById(clinica.getEndereco().getId());
-					Endereco end = enderecoService.save(clinica.getEndereco());
-					clinica.setEndereco(end);
-				}
-				
-				if(clinica.getEndereco() != null) {
 					Endereco end = enderecoService.save(clinica.getEndereco());
 					clinica.setEndereco(end);
 				}

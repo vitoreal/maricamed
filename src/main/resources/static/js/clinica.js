@@ -16,8 +16,8 @@ $(document).ready(function() {
 			data : 'data'
 		},
 		aoColumns : [
-				{data : 'nome'},
-				{data : 'email'},
+				{data : 'usuario.nome'},
+				{data : 'usuario.email'},
 				{	data : 'ativo', 
 					render : function(ativo) {
 						return ativo == true ? 'Sim' : 'Não';
@@ -28,38 +28,38 @@ $(document).ready(function() {
 						return ''.concat('<a ', ' ')
 								 .concat('href="').concat('/usuarios/editar/credenciais/usuario/')
 								 .concat(id, '"', ' ') 
+								 .concat('role="button" title="Horários">', ' ')
+								 .concat('<i class="iconecor-horario iconecor-24"></i></a>');
+					},
+					orderable : false
+				},
+				{	data : 'id',	
+					render : function(id) {
+						return ''.concat('<a ', ' ')
+								 .concat('href="').concat('/usuarios/editar/dados/usuario/')
+								 .concat(id, '"', ' ') 
+								 .concat('role="button" title="Médicos">', ' ')
+								 .concat('<i class="iconecor-doctor iconecor-24"></i></a>');
+					},
+					orderable : false
+				},
+				{	data : 'id',	
+					render : function(id) {
+						return ''.concat('<a ', ' ')
+								 .concat('href="').concat('/clinicas/editar/dados/clinica/')
+								 .concat(id, '"', ' ') 
 								 .concat('role="button" title="Editar">', ' ')
+								 .concat('<i class="iconecor-editar iconecor-24"></i></a>');
+					},
+					orderable : false
+				},
+				{	data : 'id',	
+					render : function(id) {
+						return ''.concat('<a ', ' ')
+								 .concat('href="').concat('/usuarios/editar/dados/usuario/')
+								 .concat(id, '"', ' ') 
+								 .concat('role="button" title="Alterar Senha">', ' ')
 								 .concat('<i class="iconecor-credencial iconecor-24"></i></a>');
-					},
-					orderable : false
-				},
-				{	data : 'id',	
-					render : function(id) {
-						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/usuarios/editar/dados/usuario/')
-								 .concat(id, '"', ' ') 
-								 .concat('role="button" title="Editar">', ' ')
-								 .concat('<i class="iconecor-editar iconecor-24"></i></a>');
-					},
-					orderable : false
-				},
-				{	data : 'id',	
-					render : function(id) {
-						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/usuarios/editar/dados/usuario/')
-								 .concat(id, '"', ' ') 
-								 .concat('role="button" title="Editar">', ' ')
-								 .concat('<i class="iconecor-editar iconecor-24"></i></a>');
-					},
-					orderable : false
-				},
-				{	data : 'id',	
-					render : function(id) {
-						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/usuarios/editar/dados/usuario/')
-								 .concat(id, '"', ' ') 
-								 .concat('role="button" title="Editar">', ' ')
-								 .concat('<i class="iconecor-editar iconecor-24"></i></a>');
 					},
 					orderable : false
 				}

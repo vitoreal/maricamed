@@ -36,6 +36,7 @@ public class Clinica extends AbstractEntity {
 	
 	@JsonIgnore
 	@OneToOne
+	@JoinColumn(name = "id_endereco")
 	private Endereco endereco;
 	
 	@JsonIgnore

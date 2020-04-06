@@ -1,5 +1,6 @@
 package br.com.maricamed.services;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +41,15 @@ public class ClinicaService {
 
 	@Transactional(readOnly = false)
 	public void salvar(Clinica clinica) {
-		// TODO Auto-generated method stub
+		
+		if(clinica.getUsuario().getSenha() != null) {
+			String crypt = new BCryptPasswordEncoder().encode(clinica.getUsuario().getSenha());
+			clinica.getUsuario().setSenha(crypt);
+		}
+		if(clinica.getUsuario().getId() != null) {
+			clinica.getUsuario().setDtCadastro(Instant.now());
+		}
+		repository.save(clinica);
 		
 	}
 	

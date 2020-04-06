@@ -31,7 +31,7 @@ $(document).ready(function() {
                 $("#estado").val("...");
                 $("#complemento").val("...");
                 
-                var cepEncontrado = true;
+                cepEncontrado = true;
                 
                 //Consulta o webservice viacep.com.br/
                 $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
@@ -41,7 +41,6 @@ $(document).ready(function() {
                         $("#logradouro").val(dados.logradouro);
                         $("#bairro").val(dados.bairro);
                         $("#cidade").val(dados.localidade);
-                        $("#complemento").val(dados.complemento)
                         $("#estado").val(dados.uf);
                     } //end if.
                     else {
@@ -57,8 +56,7 @@ $(document).ready(function() {
 	                        //Atualiza os campos com os valores da consulta.
 	                        $("#logradouro").val(dados.logradouro);
 	                        $("#bairro").val(dados.bairro);
-	                        $("#cidade").val(dados.localidade);
-	                        $("#complemento").val(dados.complemento)
+	                        $("#cidade").val(dados.cidade);
 	                        $("#estado").val(dados.uf);
 	                    } //end if.
 	                    else {

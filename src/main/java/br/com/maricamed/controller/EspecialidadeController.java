@@ -1,6 +1,6 @@
 package br.com.maricamed.controller;
 
-import java.util.Map;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.maricamed.entities.Especialidade;
@@ -73,9 +74,13 @@ public class EspecialidadeController {
 	
 	@GetMapping("/datatables/server")
 	public ResponseEntity<?> datatableListar(HttpServletRequest request) {
-		Map<String, Object> respBD = service.buscarEspecialidades(request);
-		ResponseEntity<Map<String, Object>> resp = ResponseEntity.ok(respBD);
-	    return resp;
+	    return ResponseEntity.ok(service.buscarEspecialidades(request));
+	}
+	
+	@GetMapping("/titulo")
+	public ResponseEntity<?> buscaPorTitulo(@RequestParam("termo") String termo) {
+		List<String> especialidades = service.buscarEspecialidadesPorTermo(termo);
+	    return ResponseEntity.ok(especialidades);
 	}
 
 }

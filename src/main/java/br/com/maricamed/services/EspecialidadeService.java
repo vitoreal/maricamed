@@ -58,5 +58,10 @@ public class EspecialidadeService {
 		return datatables.getResponse(page);		
 	}
 	
+	@Transactional(readOnly = true)
+	public List<String> buscarEspecialidadesPorTermo(String termo) {
+		return repository.findEspecialidadesPorTermo(termo);
+	}
+	
 	
 }

@@ -2,7 +2,13 @@ package br.com.maricamed.entities;
 
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Index;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
@@ -21,7 +27,15 @@ public class Especialidade extends AbstractEntity {
 			joinColumns = @JoinColumn(name = "id_especialidade", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "id_medico", referencedColumnName = "id")
     )
-	private List<Medico> medicos;	
+	private List<Medico> medicos;
+	
+	@ManyToMany
+	@JoinTable(
+			name = "clinicas_tem_especialidades",
+			joinColumns = @JoinColumn(name = "id_especialidade", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "id_clinica", referencedColumnName = "id")
+    )
+	private List<Clinica> clinicas;
 
 	public String getTitulo() {
 		return titulo;

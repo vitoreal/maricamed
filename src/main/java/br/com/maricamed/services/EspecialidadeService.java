@@ -3,6 +3,7 @@ package br.com.maricamed.services;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -61,6 +62,19 @@ public class EspecialidadeService {
 	@Transactional(readOnly = true)
 	public List<String> buscarEspecialidadesPorTermo(String termo) {
 		return repository.findEspecialidadesPorTermo(termo);
+	}
+	
+	@Transactional(readOnly = true)
+	public Set<Especialidade> buscarPorTitulo(String[] titulos) {
+		return repository.findByTitulo(titulos);
+	}
+
+	public Map<String, Object> buscarEspecialidadesPorIdClinica(Long id, HttpServletRequest request) {
+		datatables.setRequest(request);
+		datatables.setColunas(DatatablesColunas.ESPECIALIDADES);
+		Page<?> page = repository.findByIdClinica(id, datatables.getPageable());
+		
+		return datatables.getResponse(page);
 	}
 	
 	

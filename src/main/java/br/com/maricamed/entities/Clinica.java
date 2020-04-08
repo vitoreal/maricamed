@@ -24,8 +24,8 @@ public class Clinica extends AbstractEntity {
 	@JsonIgnore
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(
-			name = "medicos_tem_especialidades",
-			joinColumns = @JoinColumn(name = "id_medico", referencedColumnName = "id"),
+			name = "clinicas_tem_especialidades",
+			joinColumns = @JoinColumn(name = "id_clinica", referencedColumnName = "id"),
 			inverseJoinColumns = @JoinColumn(name = "id_especialidade", referencedColumnName = "id")
     )
 	private Set<Especialidade> especialidades;

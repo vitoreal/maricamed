@@ -87,7 +87,13 @@ public class ClinicaController {
 	@PostMapping("/editar")
 	public RedirectView editarClinica(Clinica clinica, RedirectAttributes attr) {
 		try {
-			if(clinica.getId() != null) {
+			if(!clinica.hasNotId()) {
+				
+				Clinica cli = service.findById(clinica.getId());
+				
+				if (!clinica.getEspecialidades().isEmpty()) {
+					clinica.getEspecialidades().addAll(cli.getEspecialidades());
+				}
 				
 				if(clinica.getUsuario() != null) {
 					Usuario usuario = updateUsuario(clinica.getUsuario());
@@ -109,7 +115,7 @@ public class ClinicaController {
 			attr.addFlashAttribute("clinica", clinica);
 		}
 		RedirectView rv = new RedirectView ();
-		if(clinica.getId() != null) {
+		if(!clinica.hasNotId()) {
 			rv.setUrl("/clinicas/editar/dados/clinica/"+clinica.getId());
 			attr.addFlashAttribute("id", clinica.getId());
 			
@@ -122,6 +128,19 @@ public class ClinicaController {
 	@GetMapping("/editar/dados/clinica/{id}")
 	public ModelAndView preEditarCadastro(@PathVariable("id") Long id) {
 		return new ModelAndView("clinica/cadastro", "clinica", service.findById(id));
+	}
+	
+	// excluir especialidade
+	@GetMapping({"/id/{idCli}/excluir/especializacao/{idEsp}"})
+	public RedirectView excluirEspecialidadePorClinica(@PathVariable("idCli") Long idCli, 
+						 @PathVariable("idEsp") Long idEsp, RedirectAttributes attr) {
+		service.excluirEspecialidadePorClinica(idCli, idEsp);
+		attr.addFlashAttribute("sucesso", "Especialidade removida com sucesso.");
+		RedirectView rv = new RedirectView ();
+		rv.setUrl("/clinicas/editar/dados/clinica/"+idCli);
+		attr.addFlashAttribute("id", idCli);
+			
+		return rv;		
 	}
     
 	public Usuario updateUsuario(Usuario usuario) {

@@ -53,10 +53,10 @@ $(document).ready(function() {
 					},
 					orderable : false
 				},
-				{	data : 'id',	
+				{	data : 'usuario.id',	
 					render : function(id) {
 						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/usuarios/editar/dados/usuario/')
+								 .concat('href="').concat('/usuarios/editar/credenciais/usuario/')
 								 .concat(id, '"', ' ') 
 								 .concat('role="button" title="Alterar Senha">', ' ')
 								 .concat('<i class="iconecor-credencial iconecor-24"></i></a>');

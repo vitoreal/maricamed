@@ -39,7 +39,7 @@ $(document).ready(function() {
 						return ''.concat('<a ', ' ')
 								 .concat('href="').concat('/usuarios/editar/credenciais/usuario/')
 								 .concat(id, '"', ' ') 
-								 .concat('role="button" title="Editar">', ' ')
+								 .concat('role="button" title="Editar senha">', ' ')
 								 .concat('<i class="iconecor-credencial iconecor-24"></i></a>');
 					},
 					orderable : false

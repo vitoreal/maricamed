@@ -68,6 +68,12 @@ public class ClinicaService {
 		
 		return datatables.getResponse(page);
 	}
+	
+	@Transactional(readOnly = false)
+	public void excluirEspecialidadePorClinica(Long idCli, Long idEsp) {
+		Clinica clinica = repository.findById(idCli).get();
+		clinica.getEspecialidades().removeIf(e -> e.getId().equals(idEsp));
+	}
 
 	
 	

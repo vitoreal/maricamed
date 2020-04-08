@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
@@ -88,14 +89,32 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("cadastro/alterar-senha")
-	public RedirectView alterarSenhaUsuario(Usuario usuario, RedirectAttributes attr) {
+	public RedirectView alterarSenhaUsuario(Usuario usuario, 
+				@RequestParam("senha2") String s2, @RequestParam("senha3") String s3,
+										RedirectAttributes attr) {
 		
+		RedirectView rv = new RedirectView ();
+
 		Usuario user = service.findById(usuario.getId());
+		
+		if(!usuario.getSenha().equals(s2)) {
+			attr.addFlashAttribute("falha", "Senhas não conferem, tente novamente!");
+			rv.setUrl("/usuarios/editar/credenciais/usuario/"+usuario.getId());
+			attr.addFlashAttribute("id", usuario.getId());
+			return rv;
+		}
+		
+		
+		if(!UsuarioService.isSenhaCorreta(s3, user.getSenha())) {
+			attr.addFlashAttribute("falha", "Senhas atual não confere, tente novamente!");
+			rv.setUrl("/usuarios/editar/credenciais/usuario/"+usuario.getId());
+			attr.addFlashAttribute("id", usuario.getId());
+			return rv;
+		}
+		
 		user.setSenha(usuario.getSenha());
 		service.salvar(user);
 		attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
-		
-		RedirectView rv = new RedirectView ();
 		rv.setUrl("/usuarios/editar/credenciais/usuario/"+usuario.getId());
 		attr.addFlashAttribute("id", usuario.getId());
 		return rv;

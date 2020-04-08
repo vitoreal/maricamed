@@ -22,13 +22,32 @@
 							
 							<div class="form-group row">
 								<label for="senha" 
-									class="col-sm-2 col-form-label">Senha:</label>
+									class="col-sm-2 col-form-label">Nova Senha:</label>
 								<div class="col-sm-10">
-									<input type="password" class="form-control" id="senha" maxlength="6"
+									<input type="password" class="form-control pass" id="senha" maxlength="6"
 									th:field="*{senha}" placeholder="Insira sua senha de acesso" required />
 								</div>
 							</div>
-
+							
+							<div class="form-group row">
+								<label for="senha2" 
+									class="col-sm-2 col-form-label">Repita nova senha:</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control pass" id="senha2" maxlength="6"
+									name="senha2" placeholder="Insira sua senha de acesso" required />
+								</div>
+							</div>
+							
+							<div class="form-group row">
+								<label for="senha3" 
+									class="col-sm-2 col-form-label">Senha atual:</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control" id="senha3" maxlength="6"
+									name="senha3" placeholder="Insira sua senha de acesso" required readonly />
+								</div>
+							</div>
+							
+							
 							<input type="hidden" th:field="*{id}">
 							
 							<div class="form-group row">
@@ -49,6 +68,15 @@
 
 	</section>
 	<script	th:src="~{}" th:fragment="js"></script>
-	<script th:inline="javascript" th:fragment="inlinescript"></script>
+	<script th:inline="javascript" th:fragment="inlinescript">
+	
+	
+	$('.pass').keyup(function(){
+		$('#senha').val() === $('#senha2').val()
+		    ? $('#senha3').removeAttr('readonly')
+		    : $('#senha3').attr('readonly', 'readonly');
+	});
+	
+	</script>
 </body>
 </html>

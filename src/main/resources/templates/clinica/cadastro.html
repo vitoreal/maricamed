@@ -31,7 +31,7 @@
 								<label for="telefone1" 
 									class="col-sm-2 col-form-label">Telefone 1:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="telefone1"
+									<input type="text" class="form-control phone" id="telefone1"
 										    th:field="*{usuario.telefone1}" required />
 								</div>
 							</div>
@@ -39,7 +39,7 @@
 								<label for="telefone2" 
 									class="col-sm-2 col-form-label">Telefone 2:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="telefone2"
+									<input type="text" class="form-control phone" id="telefone2"
 										    th:field="*{usuario.telefone2}" />
 								</div>
 							</div>
@@ -47,7 +47,7 @@
 								<label for="celular" 
 									class="col-sm-2 col-form-label">Celular:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="celular"
+									<input type="text" class="form-control phone" id="celular"
 										    th:field="*{usuario.celular}" />
 								</div>
 							</div>
@@ -81,7 +81,7 @@
 								<label for="cep" 
 									class="col-sm-2 col-form-label">CEP:</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="cep"
+									<input type="text" class="form-control cep" id="cep"
 										    th:field="*{endereco.cep}" required />
 								</div>
 							</div>
@@ -180,6 +180,7 @@
 		
 	</section>
 	<script	th:src="@{/js/clinica.js(v=${version})}" th:fragment="js"></script>
+	<script	th:src="@{/js/autocompleteEspecialidades.js(v=${version})}"	th:fragment="js"></script>
 	<script	th:src="@{/js/consultaCEP.js(v=${version})}" th:fragment="js"></script>
 	<script th:inline="javascript" th:fragment="inlinescript">
 	$(document).ready(function () {

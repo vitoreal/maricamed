@@ -10,51 +10,71 @@
 		<main role="main">
 		
 		<section class="jumbotron text-center">			
-			<img class="d-block mx-auto" th:src="@{/image/spring-security.png}"
-				width="72" height="72">
 			<div class="container">
-				<h1 class="jumbotron-heading">Clínica Spring Security</h1>
-				<p class="lead text-muted">Médicos e Especialistas</p>
+				<h1 class="jumbotron-heading" th:text="'Clínica ' + ${medico.clinica.usuario.nome}"> </h1>
 			</div>
 		</section>
 
 		<div class="album py-5 bg-light">
 			<div class="container">
-
 				<div class="d-flex justify-content-center">
-					<div class="col-md-8">
-					
+					<div class="col-md-10">
+					<h3 class="jumbotron-heading mb-4">Cadastro de Médicos</h3>
 						<div th:replace="fragments/alert  :: alerta-sucesso"></div>
 						
 						<form th:action="${medico.id == null} ? @{/medicos/salvar} : @{/medicos/editar}"
 							  th:object="${medico}"	method="POST" class="was-validated">
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="nome" class="form-group">Nome Completo</label>
-									<input type="text" class="form-control"
-										th:field="*{nome}" id="nome" placeholder="João da Silva"
-										required/>
-									<div class="invalid-feedback">Nome completo é requerido.</div>
+							  
+							<div class="form-group row">
+								<label for="crm" 
+									class="col-sm-2 col-form-label">Inscrição CRM:</label>
+								<div class="col-sm-5">
+									<input type="text" class="form-control" id="crm"
+										    th:field="*{crm}" required />
 								</div>
 							</div>
-							<div class="form-row">
-								<div class="form-group col-md-6">
-									<label for="crm">Inscrição CRM</label> 
-									<input type="text" class="form-control" id="crm" placeholder="000000"
-										th:field="*{crm}" required />
-									<div class="invalid-feedback">CRM é requerido.</div>
-								</div>
-								<div class="form-group col-md-6">
-									<label for="dtInscricao">Data da Inscrição</label> 
-									<input
-										type="date" class="form-control" id="dtInscricao"
-										th:field="*{dtInscricao}" required />
-									<div class="invalid-feedback">Data de Inscrição CRM é requerida.</div>	
+							<div class="form-group row">
+								<label for="dataInscricao" 
+									class="col-sm-2 col-form-label">Data de Inscrição:</label>
+								<div class="col-sm-5">
+									<input type="date" class="form-control" id="dataInscricao"
+										    name="dataInscricao" required />
 								</div>
 							</div>
-
+							<div class="form-group row">
+								<label for="nome" 
+									class="col-sm-2 col-form-label">Nome:</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="nome"
+										    th:field="*{usuario.nome}" required />
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="email" 
+									class="col-sm-2 col-form-label">Email:</label>
+								<div class="col-sm-10">
+									<input type="email" class="form-control" id="email"
+										    th:field="*{usuario.email}" 
+										    th:readonly="${medico.usuario.id != null}" />
+								</div>
+							</div>
+							<div class="form-group row" th:if="${medico.usuario.id == null}">
+								<label for="senha" 
+									class="col-sm-2 col-form-label">Senha:</label>
+								<div class="col-sm-10">
+									<input type="password" class="form-control" id="senha" maxlength="6"
+									th:field="*{usuario.senha}" placeholder="Insira sua senha de acesso" required />
+								</div>
+							</div>
 							
-
+							<div class="form-group row">
+								<div class="col-sm-10 custom-control custom-switch">
+								  <input type="checkbox" class="custom-control-input" 
+								  			th:field="*{usuario.ativo}" id="ativo" 
+								  			th:if="${medico.usuario.ativo == true ? 'checked=checked' : ''}" />
+								  <label class="custom-control-label" for="ativo">Cadastro Ativo</label>
+								</div>
+							</div>
 							<div id="especialidades-selecionadas">
 								<div class="form-group">
 									<label for="autocomplete-especialidades">Especialidade(s)</label>
@@ -71,14 +91,14 @@
 							
 							<input type="hidden" name="uid" th:field="*{usuario.id}">
 							<input type="hidden" name="id" th:field="*{id}">
-														
+							<input type="hidden" name="idClinica" th:field="*{clinica.id}">						
 							<div class="form-group row">
-								<div class="col-sm-10">
-									<button type="submit" class="btn btn-primary"
-										data-toggle="tooltip" data-placement="right" title="Salvar">
-										<i class="fas fa-save"></i>
-									</button>
-								</div>
+								<a class="btn btn-primary float-right" type="button" th:href="@{'/medicos/dados/' + ${medico.clinica.id}}">Voltar</a>
+									
+								<button type="submit" class="btn btn-primary float-right" data-placement="right" title="Salvar">
+									<i class="fa fa-save"></i> Salvar
+								</button>
+								
 							</div>
 						</form>
 
@@ -105,6 +125,37 @@
 		
 	</section>
 	<script	th:src="@{/js/medico.js(v=${version})}"	th:fragment="js"></script>
-	<script th:inline="javascript" th:fragment="inlinescript"></script>
+	<script	th:src="@{/js/autocompleteEspecialidades.js(v=${version})}"	th:fragment="js"></script>
+	<script th:inline="javascript" th:fragment="inlinescript">
+	$(document).ready(function () {
+		moment.locale('pt-BR');
+	
+		var idMedico = [[${medico.id != null ? medico.id : 0}]];
+		if (idMedico != 0) {
+			var table = $('#table-medico-especializacao').DataTable({
+				searching: false,
+				lengthMenu: [3, 5],
+				processing: true,
+				serverSide: true,
+				responsive: true,
+				ajax: {
+					url: '/especialidades/datatables/server/medico/' + idMedico,
+					data: 'data'
+				},
+				columns: [
+					{data: 'id'},
+					{data: 'titulo'},
+					{orderable: false,
+					 data: 'id',
+						"render": function(id) {
+							return '<a href="/medicos/id/' + idMedico + '/excluir/especializacao/' +
+								id +'" role="button" title="Excluir especialidade"><i class="iconecor-remove iconecor-24"></i></a>';
+						}
+					}
+				]
+			});
+		}
+	}); 
+	</script>
 </body>
 </html>

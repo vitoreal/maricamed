@@ -1,5 +1,6 @@
 package br.com.maricamed.entities;
 
+import java.time.Instant;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -20,6 +22,9 @@ public class Medico extends AbstractEntity {
 
 	@Column(name = "crm", unique = true, nullable = false)
 	private Integer crm;
+	
+	@Column(name = "data_inscricao", nullable = false, length = 10)
+	private Instant dtInscricao;
 	
 	// evita recursividade quando o json de resposta for criado para a datatables.
 	@JsonIgnore
@@ -34,6 +39,10 @@ public class Medico extends AbstractEntity {
 	@ManyToOne
 	@JoinColumn(name="id_clinica")
 	private Clinica clinica;
+	
+	@OneToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "id_usuario")
+	private Usuario usuario;
 	
 	public Medico() {
 		super();
@@ -65,6 +74,22 @@ public class Medico extends AbstractEntity {
 
 	public void setClinica(Clinica clinica) {
 		this.clinica = clinica;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	public Instant getDtInscricao() {
+		return dtInscricao;
+	}
+
+	public void setDtInscricao(Instant dtInscricao) {
+		this.dtInscricao = dtInscricao;
 	}
 
 }

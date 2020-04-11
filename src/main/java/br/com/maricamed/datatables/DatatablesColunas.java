@@ -4,7 +4,7 @@ public class DatatablesColunas {
 
 	public static final String[] ESPECIALIDADES = {"id", "titulo"};
 
-	public static final String[] MEDICOS = {"id", "nome", "crm", "dtInscricao", "especialidades"};
+	public static final String[] MEDICOS = {"usuario.nome", "usuario.ativo", "crm"};
 	
 	public static final String[] CLINICAS = {"usuario.nome", "usuario.ativo"};
 	

@@ -1,5 +1,8 @@
 package br.com.maricamed.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +19,12 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import br.com.maricamed.entities.Clinica;
 import br.com.maricamed.entities.Endereco;
+import br.com.maricamed.entities.Perfil;
+import br.com.maricamed.entities.PerfilTipo;
 import br.com.maricamed.entities.Usuario;
 import br.com.maricamed.services.ClinicaService;
 import br.com.maricamed.services.EnderecoService;
+import br.com.maricamed.services.PerfilService;
 import br.com.maricamed.services.UsuarioService;
 
 /**
@@ -44,6 +50,8 @@ public class ClinicaController {
 	private EnderecoService enderecoService;
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private PerfilService perfilService;
 	
 	@GetMapping("/lista")
 	public String listarClinicas() {
@@ -66,6 +74,12 @@ public class ClinicaController {
 			
 			if(clinica.getUsuario() != null) {
 				Usuario user = usuarioService.salvar(clinica.getUsuario());
+				
+				List<Perfil> lpe = new ArrayList<Perfil>();
+				
+				Perfil perf = perfilService.findById(PerfilTipo.CLINICA.getCod());
+				lpe.add(perf);
+				user.setPerfis(lpe);
 				clinica.setUsuario(user);
 			}
 			
@@ -127,6 +141,7 @@ public class ClinicaController {
 	
 	@GetMapping("/editar/dados/clinica/{id}")
 	public ModelAndView preEditarCadastro(@PathVariable("id") Long id) {
+		
 		return new ModelAndView("clinica/cadastro", "clinica", service.findById(id));
 	}
 	

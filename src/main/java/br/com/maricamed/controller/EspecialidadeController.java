@@ -87,5 +87,10 @@ public class EspecialidadeController {
 	public ResponseEntity<?> datatableEpecialidadeClinicaListar(@PathVariable("id") Long id, HttpServletRequest request) {
 	    return ResponseEntity.ok(service.buscarEspecialidadesPorIdClinica(id, request));
 	}
+	
+	@GetMapping("/datatables/server/medico/{id}")
+	public ResponseEntity<?> datatableEpecialidadeMedicoListar(@PathVariable("id") Long id, HttpServletRequest request) {
+	    return ResponseEntity.ok(service.buscarEspecialidadesPorIdMedico(id, request));
+	}
 
 }

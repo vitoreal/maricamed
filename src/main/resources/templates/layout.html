@@ -91,6 +91,7 @@
     <script th:src="@{/assets/js/jQuery.scrollSpeed.js}"></script>
     <script th:src="@{/assets/js/jQuery.scrollSpeed.js}"></script>
     <script th:src="@{/assets/js/scripts.js}"></script>
+	<script th:src="@{/assets/js/jquery.mask.js}"></script>
 		
 	<!-- 	MEUS JS -->
 	<script th:replace=":: js"></script>	
@@ -114,6 +115,15 @@
 		$("#btnCancel").on('click', function() {
 			url = '';
 		});		
+		
+		  $('.time').mask('00:00');
+		  //$('.date_time').mask('00/00/0000 00:00:00');
+		  $('.cep').mask('00000-000');
+		  $('.phone').mask('(00) 00000-0000');
+		  //$('.mixed').mask('AAA 000-S0S');
+		  //$('.cpf').mask('000.000.000-00', {reverse: true});
+		  //$('.money').mask('000.000.000.000.000,00', {reverse: true});
+		  
 	</script>
 </body>
 </html>

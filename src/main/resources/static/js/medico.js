@@ -2,6 +2,7 @@
 $(document).ready(function() {
 	
 	moment.locale('pt-BR');
+	
 	var table = $('#tbl-datatable').DataTable({
 		"language": {
             "url": "/util/datatable-pt-br.json"
@@ -12,13 +13,14 @@ $(document).ready(function() {
 		serverSide : true,
 		responsive : true,
 		ajax : {
-			url : '/clinicas/datatables/server/clinicas',
+			url : '/medicos/datatables/server/medicos/'+$("#idClinica").val(),
 			data : 'data'
 		},
 		aoColumns : [
 				{data : 'usuario.nome'},
 				{data : 'usuario.email'},
-				{	data : 'ativo', 
+				{data : 'crm'},
+				{	data : 'usuario.ativo', 
 					render : function(ativo) {
 						return ativo == true ? 'Sim' : 'Não';
 					}
@@ -26,27 +28,7 @@ $(document).ready(function() {
 				{	data : 'id',	
 					render : function(id) {
 						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/agendamentos/editar/agendamentos/')
-								 .concat(id, '"', ' ') 
-								 .concat('role="button" title="Horários">', ' ')
-								 .concat('<i class="iconecor-horario iconecor-24"></i></a>');
-					},
-					orderable : false
-				},
-				{	data : 'id',	
-					render : function(id) {
-						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/medicos/dados/')
-								 .concat(id, '"', ' ') 
-								 .concat('role="button" title="Médicos">', ' ')
-								 .concat('<i class="iconecor-doctor iconecor-24"></i></a>');
-					},
-					orderable : false
-				},
-				{	data : 'id',	
-					render : function(id) {
-						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/clinicas/editar/dados/clinica/')
+								 .concat('href="').concat('/medicos/editar/dados/medico/')
 								 .concat(id, '"', ' ') 
 								 .concat('role="button" title="Editar">', ' ')
 								 .concat('<i class="iconecor-editar iconecor-24"></i></a>');

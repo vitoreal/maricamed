@@ -60,11 +60,8 @@ public class MedicoController {
     @GetMapping("/dados/{idClinica}")
     public ModelAndView abrirDadosMedico(@PathVariable("idClinica") Long id, RedirectAttributes attr) {
     	ModelAndView mv = new ModelAndView("medico/lista");
-    	// teste minha maquina
     	mv.addObject("medico", service.findByIdClinica(id));
-    	
     	mv.addObject("idClinica", id);
-    	// teste minha maquina
     	return mv;
     }
     

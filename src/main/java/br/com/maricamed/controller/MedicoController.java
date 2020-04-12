@@ -62,6 +62,7 @@ public class MedicoController {
     	ModelAndView mv = new ModelAndView("medico/lista");
     	// teste minha maquina
     	mv.addObject("medico", service.findByIdClinica(id));
+    	
     	mv.addObject("idClinica", id);
     	// teste minha maquina
     	return mv;

@@ -30,6 +30,7 @@ import br.com.maricamed.services.ClinicaService;
 import br.com.maricamed.services.MedicoService;
 import br.com.maricamed.services.PerfilService;
 import br.com.maricamed.services.UsuarioService;
+import br.com.maricamed.utils.Utils;
 
 /**
 * <h1>Marica Med - controle de usuario!</h1>
@@ -61,7 +62,7 @@ public class MedicoController {
     public ModelAndView abrirDadosMedico(@PathVariable("idClinica") Long id, RedirectAttributes attr) {
     	ModelAndView mv = new ModelAndView("medico/lista");
     	mv.addObject("medico", service.findByIdClinica(id));
-    	mv.addObject("idClinica", id);
+    	//mv.addObject("idClinica", id);
     	return mv;
     }
     
@@ -74,8 +75,25 @@ public class MedicoController {
     	return mv;
 	}
     
-    @GetMapping("/datatables/server/medicos/{idClinica}")
-	public ResponseEntity<?> datatableEpecialidadeClinicaListar(@PathVariable("idClinica") Long id, HttpServletRequest request) {
+    @GetMapping("/editar/dados/{idClinica}/medico/{idMedico}")
+	public ModelAndView preEditarCadastro(@PathVariable("idClinica") Long idClinica, 
+										@PathVariable("idMedico") Long idMedico) {
+		
+    	ModelAndView mv = new ModelAndView("medico/cadastro");
+    	Clinica clinica = serviceClinica.findById(idClinica);
+    	Medico medico = service.findById(idMedico);
+    	
+    	String dtInscricao = Utils.converteInstantToDate(medico.getDtInscricao());
+    	
+    	medico.setClinica(clinica);
+    	mv.addObject("medico", medico);
+    	mv.addObject("dataInscricao", dtInscricao);
+    	return mv;
+    	
+	}
+    
+    @GetMapping("/datatables/server/medicos/{idMedico}")
+	public ResponseEntity<?> datatableEpecialidadeClinicaListar(@PathVariable("idMedico") Long id, HttpServletRequest request) {
 	    return ResponseEntity.ok(service.buscarMedicosPorIdClinica(id, request));
 	}
     
@@ -114,14 +132,74 @@ public class MedicoController {
 			service.salvar(medico);
 			attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
 			attr.addFlashAttribute("idClinica", idClinica);
-		} catch (ParseException | DataIntegrityViolationException ex) {
+		} catch (DataIntegrityViolationException ex) {
 			attr.addFlashAttribute("falha", "Error: E-mail já existente!");
+			attr.addFlashAttribute("medico", medico);
+			attr.addFlashAttribute("idClinica", idClinica);
+		} catch (ParseException ex) {
+			attr.addFlashAttribute("falha", "Algum erro aconteceu!");
 			attr.addFlashAttribute("medico", medico);
 			attr.addFlashAttribute("idClinica", idClinica);
 		}
 		
-		rv.setUrl("/medicos/novo/");
+		rv.setUrl("/medicos/novo/"+idClinica);
 		return rv;
+	}
+    
+    @PostMapping("/editar")
+	public RedirectView editarMedico(Medico medico, 
+			@RequestParam("dataInscricao") String dataInscricao, RedirectAttributes attr) {
+		try {
+			if(!medico.hasNotId()) {
+				
+				Medico med = service.findById(medico.getId());
+				
+				if (!medico.getEspecialidades().isEmpty()) {
+					medico.getEspecialidades().addAll(med.getEspecialidades());
+				}
+				
+				if(medico.getUsuario() != null) {
+					Usuario usuario = updateUsuario(medico.getUsuario());
+					Usuario user = usuarioService.salvar(usuario);
+					medico.setUsuario(user);
+				}
+				
+				if(!("").equals(dataInscricao)) {
+					Instant dtInsc = new SimpleDateFormat("yyyy-mm-dd").parse(dataInscricao).toInstant();
+					medico.setDtInscricao(dtInsc);
+				}
+				
+				service.salvar(medico);
+				attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
+				
+			}
+			
+		} catch (DataIntegrityViolationException ex) {
+			attr.addFlashAttribute("falha", "Error: E-mail já existente!");
+			attr.addFlashAttribute("medico", medico);
+		} catch (ParseException ex) {
+			attr.addFlashAttribute("falha", "Algum erro aconteceu!");
+			attr.addFlashAttribute("medico", medico);
+			attr.addFlashAttribute("idClinica", medico.getClinica().getId());
+		}
+		RedirectView rv = new RedirectView ();
+		if(!medico.hasNotId()) {
+			rv.setUrl("/medicos/editar/dados/"+medico.getClinica().getId()+"/medico/"+medico.getId());
+			attr.addFlashAttribute("id", medico.getClinica().getId());
+			
+		} else {
+			rv.setUrl("/medicos/novo/"+medico.getClinica().getId());
+			return rv;
+		}
+		return rv;
+	}
+    
+    public Usuario updateUsuario(Usuario usuario) {
+		Usuario user = usuarioService.findById(usuario.getId());
+		
+		user.setNome(usuario.getNome());
+		user.setAtivo(usuario.isAtivo());
+		return user;
 	}
     
 }

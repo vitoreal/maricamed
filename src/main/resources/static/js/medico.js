@@ -28,7 +28,7 @@ $(document).ready(function() {
 				{	data : 'id',	
 					render : function(id) {
 						return ''.concat('<a ', ' ')
-								 .concat('href="').concat('/medicos/editar/dados/medico/')
+								 .concat('href="').concat('/medicos/editar/dados/'+$("#idClinica").val()+'/medico/')
 								 .concat(id, '"', ' ') 
 								 .concat('role="button" title="Editar">', ' ')
 								 .concat('<i class="iconecor-editar iconecor-24"></i></a>');

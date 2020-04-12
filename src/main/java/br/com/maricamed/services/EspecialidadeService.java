@@ -79,7 +79,7 @@ public class EspecialidadeService {
 
 	public Map<String, Object> buscarEspecialidadesPorIdMedico(Long id, HttpServletRequest request) {
 		datatables.setRequest(request);
-		datatables.setColunas(DatatablesColunas.MEDICOS);
+		datatables.setColunas(DatatablesColunas.ESPECIALIDADES);
 		Page<?> page = repository.findByIdMedico(id, datatables.getPageable());
 		
 		return datatables.getResponse(page);

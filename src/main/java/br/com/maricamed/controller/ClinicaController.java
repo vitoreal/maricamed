@@ -165,7 +165,6 @@ public class ClinicaController {
 		user.setTelefone1(usuario.getTelefone1());
 		user.setTelefone2(usuario.getTelefone2());
 		user.setCelular(usuario.getCelular());
-		user.setPerfis(usuario.getPerfis());
 		user.setAtivo(usuario.isAtivo());
 		return user;
 	}

@@ -92,7 +92,7 @@
 							
 							<input type="hidden" name="uid" th:field="*{usuario.id}">
 							<input type="hidden" name="id" th:field="*{id}">
-							<input type="hidden" name="idClinica" th:field="*{clinica.id}">						
+							<input type="hidden" name="idClinica" th:field="*{clinica.id}">	
 							<div class="form-group row">
 								<a class="btn btn-primary float-right" type="button" th:href="@{'/medicos/dados/' + ${medico.clinica.id}}">Voltar</a>
 									
@@ -132,7 +132,11 @@
 		moment.locale('pt-BR');
 	
 		var idMedico = [[${medico.id != null ? medico.id : 0}]];
+		
 		if (idMedico != 0) {
+
+			var idClinica = [[${medico.clinica.id}]];
+			
 			var table = $('#table-medico-especializacao').DataTable({
 				searching: false,
 				lengthMenu: [3, 5],
@@ -149,7 +153,7 @@
 					{orderable: false,
 					 data: 'id',
 						"render": function(id) {
-							return '<a href="/medicos/id/' + idMedico + '/excluir/especializacao/' +
+							return '<a href="/medicos/'+idClinica+'/id/' + idMedico + '/excluir/especializacao/' +
 								id +'" role="button" title="Excluir especialidade"><i class="iconecor-remove iconecor-24"></i></a>';
 						}
 					}

@@ -77,5 +77,11 @@ public class MedicoService {
 		}
 		repository.save(medico);		
 	}
+	
+	@Transactional(readOnly = false)
+	public void excluirEspecialidadePorMedico(Long idMedico, Long idEsp) {
+		Medico medico = repository.findById(idMedico).get();
+		medico.getEspecialidades().removeIf(e -> e.getId().equals(idEsp));
+	}
 
 }

@@ -194,6 +194,19 @@ public class MedicoController {
 		return rv;
 	}
     
+ // excluir especialidade
+ 	@GetMapping({"{idClinica}/id/{idMedico}/excluir/especializacao/{idEsp}"})
+ 	public RedirectView excluirEspecialidadePorMedico(@PathVariable("idClinica") Long idClinica, 
+ 						@PathVariable("idMedico") Long idMedico, 
+ 						 @PathVariable("idEsp") Long idEsp, RedirectAttributes attr) {
+ 		service.excluirEspecialidadePorMedico(idMedico, idEsp);
+ 		attr.addFlashAttribute("sucesso", "Especialidade removida com sucesso.");
+ 		RedirectView rv = new RedirectView ();
+ 		rv.setUrl("/medicos/editar/dados/"+idClinica+"/medico/"+idMedico);
+ 			
+ 		return rv;		
+ 	}
+    
     public Usuario updateUsuario(Usuario usuario) {
 		Usuario user = usuarioService.findById(usuario.getId());
 		

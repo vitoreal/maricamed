@@ -62,7 +62,7 @@ public class MedicoController {
     public ModelAndView abrirDadosMedico(@PathVariable("idClinica") Long id, RedirectAttributes attr) {
     	ModelAndView mv = new ModelAndView("medico/lista");
     	mv.addObject("medico", service.findByIdClinica(id));
-    	//mv.addObject("idClinica", id);
+    	mv.addObject("idClinica", id);
     	return mv;
     }
     

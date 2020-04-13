@@ -58,6 +58,13 @@ public class MedicoController {
 	@Autowired
 	private PerfilService perfilService;
 	
+	@GetMapping("/lista")
+	public ModelAndView listarMedicos() {
+		ModelAndView mv = new ModelAndView("medico/lista");
+    	mv.addObject("medico", service.findAll());
+    	return mv;
+	}
+	
     @GetMapping("/dados/{idClinica}")
     public ModelAndView abrirDadosMedico(@PathVariable("idClinica") Long id, RedirectAttributes attr) {
     	ModelAndView mv = new ModelAndView("medico/lista");

@@ -38,7 +38,7 @@
 
 
 							<form th:action="@{/logout}" method="post"
-								class="form-inline mt-2 mt-md-0" sec:authorize="isAuthenticated()">
+								class="form-inline mt-4 mt-md-0" sec:authorize="isAuthenticated()">
 								<div class="btn-group mb-2 mr-sm-2">
 									<button type="button" class="btn btn-light">
 										<i class="fa fa-user"></i> <span class=""
@@ -87,9 +87,9 @@
 					</div>
 				</div>
 			</div>
-			<nav class="navbar navbar-expand-md navbar-dark bg-dark" sec:authorize="isAuthenticated()">
+			<nav class="navbar navbar-expand-md navbar-dark bg-dark" sec:authorize="isAuthenticated() && hasAuthority('ADMIN')">
 				<div class="collapse navbar-collapse" id="navbarCollapse">
-					<ul class="navbar-nav mr-auto" sec:authorize="hasAuthority('ADMIN')">
+					<ul class="navbar-nav mr-auto">
 						<li class="nav-item">
 							<a class="nav-link" th:href="@{/especialidades/}">Especialidades</a>
 						</li>
@@ -97,55 +97,9 @@
 							<a class="nav-link" th:href="@{/clinicas/lista}">Clínicas</a> 
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" th:href="@{/medicos/lista}">Médicos</a> 
-						</li>	
-						<li class="nav-item">
 							<a class="nav-link" th:href="@{/usuarios/lista}">Usuários</a> 
 						</li>
 					</ul>
-					<!--  
-					<ul class="navbar-nav mr-auto" sec:authorize="isAuthenticated()">
-						<li class="nav-item dropdown"><a
-							class="btn btn-light dropdown-toggle" href="#" id="dropdown02"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Clínicas</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown02">
-								<a class="dropdown-item" th:href="@{/clinicas/dados}">Dados
-									Cadastrais</a> 
-								
-								<a class="dropdown-item"
-									th:href="@{/clinicas/lista}">Lista de Clínicas</a>
-								
-							</div></li>	
-						<li class="nav-item dropdown"><a
-							class="btn btn-light dropdown-toggle" href="#" id="dropdown02"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Médicos</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown02">
-								<a class="dropdown-item" th:href="@{/medicos/dados}">Dados
-									Cadastrais</a> <a class="dropdown-item"
-									th:href="@{/usuarios/editar/senha}">Editar Senha</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item"
-									th:href="@{/agendamentos/historico/consultas}">Consultas
-									Agendadas</a>
-							</div></li>
-						<li class="nav-item dropdown"><a
-							class="btn btn-light dropdown-toggle" href="#" id="dropdown03"
-							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pacientes</a>
-							<div class="dropdown-menu" aria-labelledby="dropdown03">
-								<a class="dropdown-item" th:href="@{/pacientes}">Cadastrar
-									Dados</a> <a class="dropdown-item"
-									th:href="@{/usuarios/editar/senha}">Editar Senha</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" th:href="@{/agendamentos/agendar}">Agendar
-									Consulta</a> <a class="dropdown-item"
-									th:href="@{/agendamentos/historico/paciente}">Histórico de
-									Consultas</a>
-							</div>
-							</li>
-							</ul>
-						 -->		
-					
-					
 				</div>
 			</nav>
 			<!-- header bottom area end -->

@@ -12,7 +12,7 @@
 			<div class="container">
 
 				<div class="row">
-					<div class="col-md-12">
+					<div class="col-md-12" th:if="${idClinica}">
 						<a class="btn btn-primary float-right" data-placement="right" th:href="@{'/medicos/novo/' + ${idClinica}}"> <i class="fa fa-save"></i> Novo Médico</a>
 					</div>
 					<div class="col-md-12">

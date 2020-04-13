@@ -2,19 +2,37 @@ package br.com.maricamed.controller;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import br.com.maricamed.entities.PerfilTipo;
+
 @Controller
 public class HomeController {
 
     @GetMapping({"/", "/home"})
-    public String home() {
+    public String home(Authentication authentication) {
+    	
+    	if (authentication != null && authentication.isAuthenticated()) {
+    		
+    		for (GrantedAuthority grantedAuthority : authentication.getAuthorities()){
+    	        if (grantedAuthority.getAuthority().equals(PerfilTipo.CLINICA.getDesc())) {
+    	        	return "admin-clinica";
+    	        } else if (grantedAuthority.getAuthority().equals(PerfilTipo.MEDICO.getDesc())) {
+    	        	return "admin-medico";
+    	        } else if (grantedAuthority.getAuthority().equals(PerfilTipo.PACIENTE.getDesc())) {
+    	        	return "admin-paciente";
+    	        }
+    	    }
+    	}
+    	
         return "home";
     }
-
+    
     @GetMapping("/login")
     public String login(Model model, String error, String logout) {
         if (error != null)	

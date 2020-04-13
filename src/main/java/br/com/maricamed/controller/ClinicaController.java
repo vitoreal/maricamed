@@ -168,4 +168,5 @@ public class ClinicaController {
 		user.setAtivo(usuario.isAtivo());
 		return user;
 	}
+	
 }

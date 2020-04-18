@@ -39,7 +39,9 @@ public class HomeController {
     		session.setAttribute("user", userSession);
     		
     		for (GrantedAuthority grantedAuthority : authentication.getAuthorities()){
+    			session.setAttribute("perfil", grantedAuthority.getAuthority());
     	        if (grantedAuthority.getAuthority().equals(PerfilTipo.CLINICA.getDesc())) {
+    	        	session.setAttribute("perfil", userSession);
     	        	return "clinica/admin-clinica";
     	        } else if (grantedAuthority.getAuthority().equals(PerfilTipo.MEDICO.getDesc())) {
     	        	return "admin-medico";

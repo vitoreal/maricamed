@@ -1,10 +1,12 @@
 package br.com.maricamed.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import br.com.maricamed.entities.Usuario;
 import br.com.maricamed.services.UsuarioService;
+import br.com.maricamed.utils.Utils;
 
 /**
 * <h1>Marica Med - controle de usuario!</h1>
@@ -90,11 +93,10 @@ public class UsuarioController {
 	
 	@PostMapping("cadastro/alterar-senha")
 	public RedirectView alterarSenhaUsuario(Usuario usuario, 
-				@RequestParam("senha2") String s2, @RequestParam("senha3") String s3,
-										RedirectAttributes attr) {
+				@RequestParam("senha2") String s2, @RequestParam("senha3") String s3, RedirectAttributes attr) {
 		
 		RedirectView rv = new RedirectView ();
-
+		
 		Usuario user = service.findById(usuario.getId());
 		
 		if(!usuario.getSenha().equals(s2)) {
@@ -121,8 +123,15 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/editar/credenciais/usuario/{id}")
-	public ModelAndView preEditarCredenciais(@PathVariable("id") Long id) {
-	    return new ModelAndView("usuario/alterar-senha", "usuario", service.findById(id));
+	public ModelAndView preEditarCredenciais(@PathVariable("id") Long id,
+			RedirectAttributes attr, HttpSession session) {
+		
+		if (Utils.verificaSeUserSessionIgualUserParam(id, session)) {
+			throw new UsernameNotFoundException(" ");
+		} else {
+		    return new ModelAndView("usuario/alterar-senha", "usuario", service.findById(id));
+		}
+		
 	}
 	
 	@GetMapping("/editar/dados/usuario/{id}")

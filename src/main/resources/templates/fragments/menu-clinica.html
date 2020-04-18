@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+		<div class="col-md-12" th:fragment="admin-menu-clinica">
+			<a class="btn btn-primary float-right" th:href="@{/usuarios/editar/credenciais/usuario/}+(${session.user.id})"> <i class="fa fa-save"></i> Mudar Senha</a>
+			<a class="btn btn-primary float-right" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Meus Dados</a>
+			<a class="btn btn-primary float-right" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Horários</a>
+			<a class="btn btn-primary float-right" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Médicos</a>
+			<a class="btn btn-primary float-right" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Agendamentos</a>
+		</div>
+</body>
+</html>

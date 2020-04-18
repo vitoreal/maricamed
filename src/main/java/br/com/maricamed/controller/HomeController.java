@@ -1,27 +1,46 @@
 package br.com.maricamed.controller;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import br.com.maricamed.entities.PerfilTipo;
+import br.com.maricamed.entities.Usuario;
+import br.com.maricamed.services.UsuarioService;
 
 @Controller
 public class HomeController {
 
+	@Autowired
+	private UsuarioService usuarioService;
+	
     @GetMapping({"/", "/home"})
-    public String home(Authentication authentication) {
+    public String home(Authentication authentication, Model model, 
+    		@AuthenticationPrincipal UserDetails currentUser, HttpSession session) {
     	
     	if (authentication != null && authentication.isAuthenticated()) {
     		
+    		Usuario user = usuarioService.buscaPorEmail(currentUser.getUsername());
+    		
+    		Usuario userSession = new Usuario();
+    		userSession.setId(user.getId());
+    		userSession.setNome(user.getNome());
+    		userSession.setEmail(user.getEmail());
+    		
+    		session.setAttribute("user", userSession);
+    		
     		for (GrantedAuthority grantedAuthority : authentication.getAuthorities()){
     	        if (grantedAuthority.getAuthority().equals(PerfilTipo.CLINICA.getDesc())) {
-    	        	return "admin-clinica";
+    	        	return "clinica/admin-clinica";
     	        } else if (grantedAuthority.getAuthority().equals(PerfilTipo.MEDICO.getDesc())) {
     	        	return "admin-medico";
     	        } else if (grantedAuthority.getAuthority().equals(PerfilTipo.PACIENTE.getDesc())) {

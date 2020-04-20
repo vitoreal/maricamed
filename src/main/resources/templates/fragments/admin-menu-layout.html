@@ -12,7 +12,7 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto" sec:authorize="hasAuthority('CLINICA')">
 				<li class="nav-item">
-					<a class="btn btn-dark" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Médicos</a>
+					<a class="btn btn-dark" th:href="@{/medicos/dados/}+${session.clinica.id}"> <i class="fa fa-save"></i> Médicos</a>
 				</li>
 				<li class="nav-item">
 					<a class="btn btn-dark" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Agendamentos</a>

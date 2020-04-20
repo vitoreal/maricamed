@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+
+<div th:fragment="admin-menu">
+		
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a class="navbar-brand" th:href="@{/}">Painel de Controle :: </a>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto" sec:authorize="hasAuthority('CLINICA')">
+				<li class="nav-item">
+					<a class="btn btn-dark" th:href="@{/usuarios/editar/credenciais/usuario/}+(${session.user.id})"> <i class="fa fa-save"></i> Mudar Senha</a>
+				</li>
+				<li class="nav-item">
+					<a class="btn btn-dark" th:href="@{/clinicas/editar/dados/clinica/}+(${session.clinica.id})"> <i class="fa fa-save"></i> Meus Dados</a>
+				</li>
+				<li class="nav-item">
+					<a class="btn btn-dark" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Horários</a>
+				</li>
+				<li class="nav-item">
+					<a class="btn btn-dark" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Médicos</a>
+				</li>
+				<li class="nav-item">
+					<a class="btn btn-dark" th:href="@{/clinicas/novo}"> <i class="fa fa-save"></i> Agendamentos</a>
+				</li>
+			</ul>
+			
+			<ul class="navbar-nav mr-auto" sec:authorize="hasAuthority('ADMIN')">
+				<li class="nav-item">
+					<a class="btn btn-dark" th:href="@{/especialidades/}">Especialidades</a>
+				</li>
+				<li class="nav-item">
+					<a class="btn btn-dark" th:href="@{/clinicas/lista}">Clínicas</a> 
+				</li>
+				<li class="nav-item">
+					<a class="btn btn-dark" th:href="@{/usuarios/lista}">Usuários</a> 
+				</li>
+			</ul>
+			
+			<form th:action="@{/logout}" method="post"
+				class="form-inline mt-4 mt-md-0">
+				<div class="btn-group mb-2 mr-sm-2">
+					<button type="button" class="btn btn-light">
+						<i class="fa fa-user"></i> <span class=""
+							th:text="${session.user.email}"></span>
+					</button>
+					<button type="submit"
+						class="btn btn-danger" aria-haspopup="true"
+						aria-expanded="false">Sair</button>
+				</div>
+			</form>
+		</div>
+	</nav>
+
+</div>
+		
+</body>
+</html>

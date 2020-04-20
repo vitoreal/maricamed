@@ -104,6 +104,9 @@ public class ClinicaController {
 			if(!clinica.hasNotId()) {
 				
 				Clinica cli = service.findById(clinica.getId());
+				if (cli.getEspecialidades() != null) {
+					clinica.getEspecialidades().addAll(cli.getEspecialidades());
+				}
 				
 				if (!clinica.getEspecialidades().isEmpty()) {
 					clinica.getEspecialidades().addAll(cli.getEspecialidades());

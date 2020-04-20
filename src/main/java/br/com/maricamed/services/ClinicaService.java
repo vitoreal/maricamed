@@ -74,7 +74,11 @@ public class ClinicaService {
 		Clinica clinica = repository.findById(idCli).get();
 		clinica.getEspecialidades().removeIf(e -> e.getId().equals(idEsp));
 	}
-
 	
+	@Transactional(readOnly = true)
+	public Clinica findByUsuario(Long id) {
+		Optional<Clinica> obj = repository.findByUsuarioId(id);
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+	}
 	
 }

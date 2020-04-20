@@ -1,4 +1,3 @@
-//datatables - lista de médicos
 $(document).ready(function() {
 	// processa o auto-complete
 	$(function() {

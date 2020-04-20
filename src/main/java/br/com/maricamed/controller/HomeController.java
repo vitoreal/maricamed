@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import br.com.maricamed.entities.PerfilTipo;
 import br.com.maricamed.entities.Usuario;
+import br.com.maricamed.services.ClinicaService;
 import br.com.maricamed.services.UsuarioService;
 
 @Controller
@@ -22,6 +23,8 @@ public class HomeController {
 
 	@Autowired
 	private UsuarioService usuarioService;
+	@Autowired
+	private ClinicaService clinicaService;
 	
     @GetMapping({"/", "/home"})
     public String home(Authentication authentication, Model model, 
@@ -42,6 +45,7 @@ public class HomeController {
     			session.setAttribute("perfil", grantedAuthority.getAuthority());
     	        if (grantedAuthority.getAuthority().equals(PerfilTipo.CLINICA.getDesc())) {
     	        	session.setAttribute("perfil", userSession);
+    	        	session.setAttribute("clinica", clinicaService.findByUsuario(user.getId()));
     	        	return "clinica/admin-clinica";
     	        } else if (grantedAuthority.getAuthority().equals(PerfilTipo.MEDICO.getDesc())) {
     	        	return "admin-medico";

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +28,7 @@ import br.com.maricamed.services.ClinicaService;
 import br.com.maricamed.services.EnderecoService;
 import br.com.maricamed.services.PerfilService;
 import br.com.maricamed.services.UsuarioService;
+import br.com.maricamed.utils.Utils;
 
 /**
 * <h1>Marica Med - controle de clinica!</h1>
@@ -114,8 +117,8 @@ public class ClinicaController {
 				
 				if(clinica.getUsuario() != null) {
 					Usuario usuario = updateUsuario(clinica.getUsuario());
-					Usuario user = usuarioService.salvar(usuario);
-					clinica.setUsuario(user);
+					usuarioService.salvar(usuario);
+					//clinica.setUsuario(user);
 				}
 				
 				if(clinica.getEndereco() != null) {
@@ -143,22 +146,37 @@ public class ClinicaController {
 	}
 	
 	@GetMapping("/editar/dados/clinica/{id}")
-	public ModelAndView preEditarCadastro(@PathVariable("id") Long id) {
+	public ModelAndView preEditarCadastro(@PathVariable("id") Long id, HttpSession session) {
 		
-		return new ModelAndView("clinica/cadastro", "clinica", service.findById(id));
+		Clinica clinica = service.findById(id);
+		
+		if (Utils.verificaSeUserSessionIgualUserParam(clinica.getUsuario().getId(), session)) {
+			throw new UsernameNotFoundException(" ");
+		} else {
+			return new ModelAndView("clinica/cadastro", "clinica", service.findById(id));
+		}
+		
 	}
 	
 	// excluir especialidade
 	@GetMapping({"/id/{idCli}/excluir/especializacao/{idEsp}"})
 	public RedirectView excluirEspecialidadePorClinica(@PathVariable("idCli") Long idCli, 
-						 @PathVariable("idEsp") Long idEsp, RedirectAttributes attr) {
-		service.excluirEspecialidadePorClinica(idCli, idEsp);
-		attr.addFlashAttribute("sucesso", "Especialidade removida com sucesso.");
-		RedirectView rv = new RedirectView ();
-		rv.setUrl("/clinicas/editar/dados/clinica/"+idCli);
-		attr.addFlashAttribute("id", idCli);
+						 @PathVariable("idEsp") Long idEsp, RedirectAttributes attr, HttpSession session) {
+		
+		Clinica clinica = service.findById(idCli);
+		
+		if (Utils.verificaSeUserSessionIgualUserParam(clinica.getUsuario().getId(), session)) {
+			throw new UsernameNotFoundException(" ");
+		} else {
+			service.excluirEspecialidadePorClinica(idCli, idEsp);
+			attr.addFlashAttribute("sucesso", "Especialidade removida com sucesso.");
+			RedirectView rv = new RedirectView ();
+			rv.setUrl("/clinicas/editar/dados/clinica/"+idCli);
+			attr.addFlashAttribute("id", idCli);
+				
+			return rv;	
+		}
 			
-		return rv;		
 	}
     
 	public Usuario updateUsuario(Usuario usuario) {

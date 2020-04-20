@@ -38,9 +38,12 @@ public final class Utils {
 	        	isAdmin = true;
 	        }
 	    }
+		
 		if (isAdmin == false) {
-			if (userSession != null && userSession.getId() != iduser) {
-				return true;
+			if (userSession != null) {
+				if (userSession.getId() != iduser) {
+					return true;
+				}
 			}
 		}
 		

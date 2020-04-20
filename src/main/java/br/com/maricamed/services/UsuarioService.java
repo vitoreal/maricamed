@@ -83,11 +83,11 @@ public class UsuarioService implements UserDetailsService {
 	@Transactional(readOnly = false)
 	public Usuario salvar(Usuario usuario) {
 		
-		if(usuario.getSenha() != null) {
+		if(usuario.getId() == null) {
+			
 			String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
 			usuario.setSenha(crypt);
-		}
-		if(usuario.getId() == null) {
+			
 			usuario.setDtCadastro(Instant.now());
 		}
 		return repository.save(usuario);
@@ -102,5 +102,14 @@ public class UsuarioService implements UserDetailsService {
 
 	public static boolean isSenhaCorreta(String senhaDigitada, String senhaArmazenada) {
 		return new BCryptPasswordEncoder().matches(senhaDigitada, senhaArmazenada);
+	}
+	
+	@Transactional(readOnly = false)
+	public Usuario alterarSenha(Usuario usuario) {
+		
+		String crypt = new BCryptPasswordEncoder().encode(usuario.getSenha());
+		usuario.setSenha(crypt);
+		return repository.save(usuario);
+		
 	}
 }

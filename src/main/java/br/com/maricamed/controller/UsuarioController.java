@@ -115,7 +115,7 @@ public class UsuarioController {
 		}
 		
 		user.setSenha(usuario.getSenha());
-		service.salvar(user);
+		service.alterarSenha(user);
 		attr.addFlashAttribute("sucesso", "Operação realizada com sucesso!");
 		rv.setUrl("/usuarios/editar/credenciais/usuario/"+usuario.getId());
 		attr.addFlashAttribute("id", usuario.getId());
@@ -135,7 +135,11 @@ public class UsuarioController {
 	}
 	
 	@GetMapping("/editar/dados/usuario/{id}")
-	public ModelAndView preEditarCadastroDadosPessoais(@PathVariable("id") Long id) {
-		return new ModelAndView("usuario/cadastro", "usuario", service.findById(id));
+	public ModelAndView preEditarCadastroDadosPessoais(@PathVariable("id") Long id, HttpSession session) {
+		if (Utils.verificaSeUserSessionIgualUserParam(id, session)) {
+			throw new UsernameNotFoundException(" ");
+		} else {
+			return new ModelAndView("usuario/cadastro", "usuario", service.findById(id));
+		}
 	}
 }

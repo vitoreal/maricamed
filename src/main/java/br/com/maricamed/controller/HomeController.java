@@ -59,12 +59,14 @@ public class HomeController {
     }
     
     @GetMapping("/login")
-    public String login(Model model, String error, String logout) {
+    public String login(Model model, String error, String logout, HttpSession session) {
         if (error != null)	
             model.addAttribute("error", "Login e Senha inválidos.");
 
-        if (logout != null)
-            model.addAttribute("message", "Você desconectou.");
+        if (logout != null) {
+        	session.removeAttribute("username");
+        	model.addAttribute("message", "Você desconectou.");
+        }
 
         return "login";
     }
